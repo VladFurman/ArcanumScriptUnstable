@@ -787,6 +787,7 @@ exports.validateFirstPass = function(settings, sourceData, targetData, property)
         case 'unused':
         case 'silent':
         case 'secret':
+        case 'craftable':
         case 'repeat': {
             switch(typeof propertyData) {
                 case 'string': {
@@ -899,6 +900,8 @@ exports.validateFirstPass = function(settings, sourceData, targetData, property)
         case 'alter':
         case 'result':
         case 'run':
+        // case 'sell':
+        // case 'craftable':
         case 'cost': {
             let statBlock = validateStat.validateBlock(settings, propertyData);
             if(statBlock === undefined) {
