@@ -1,0 +1,146 @@
+{
+    "module":"debug",
+    "sym":"⌨️",
+    "data":{
+
+    "furniture":[
+
+        {
+            "id":"dbg_enable",
+            "name":"Enable Cheats",
+            "desc":"Will mark save and open cheats",
+            "require": "g.player.name==='Cheater'",
+            "cost":{
+                "gold":1
+            },
+            "mod":{"space":1}
+        }
+
+    ],
+    "events":[
+        {
+            "id":"dbg_done",
+            "require":"g.dbg_enable>0",
+            "result":{"title":"Cheater"}
+        }
+    ],
+    "tasks":[
+        {
+            "id":"dbg_gold",
+            "name":"Get Gold",
+            "require":"g.dbg_enable>0",
+            "result":{"gold":100}
+        },
+        
+        {
+            "id":"dbg_books",
+            "name":"Get Books",
+            "require":"g.dbg_enable>0",
+            "result":{"scrolls":100,"codices":50,"tomes":10}
+        },
+        {
+            "id":"dbg_research",
+            "name":"Get Research",
+            "require":"g.dbg_enable>0",
+            "result":{"research":100}
+        },
+        {
+            "id":"dbg_xp",
+            "name":"Get Experience",
+            "require":"g.dbg_enable>0",
+            "result":{"player.exp":1000}
+        },
+        {
+            "id":"dbg_sp",
+            "name":"Get Skill Points",
+            "require":"g.dbg_enable>0",
+            "result":{"sp":10}
+        },
+        {
+            "id":"dbg_bars",
+            "name":"Regen Resources",
+            "require":"g.dbg_enable>0",
+            "tags": "t_rest",
+            "slot": "rest",
+            "verb":"inputting cheat codes",
+            "perpetual": true,
+            "effect":{
+                "stamina":10,
+                "hp":10,
+                "stress":-10,
+                "prismatic":{
+                    "skiplocked":true,
+                    "value":10
+                }
+            }
+        },
+        {
+            "id":"dbg_souls",
+            "name":"Get Souls",
+            "require":"g.dbg_enable>0",
+            "result":{"souls":10,"souls.max":5}
+        },
+        {
+            "id":"dbg_body",
+            "name":"Get Body Parts",
+            "require":"g.dbg_enable>0",
+            "result":{"bodies":5,"skulls":5,"bones":5,"bonedust":5}
+        },
+        {
+            "id":"dbg_evil",
+            "name":"Get Evil",
+            "require":"g.dbg_enable>0",
+            "result":{"evilamt":500}
+        }
+    ],
+    "spells":[
+        {
+            "id":"dbg_kill",
+            "name":"GM Smite",
+            "desc":"Kills all enemies",
+            "require":"g.dbg_enable>0",
+            "level":1,
+            "school":"cheat",
+            "buy":{
+                "gold":1
+            },
+            "cost":{
+                "gold":1
+            },
+            "attack": {
+                "tohit": 200,
+                "targets": "enemies",
+                "kind": "cheat",
+                "damage":9000
+            }
+        }
+    ],
+    "upgrades":[
+        {
+            "id": "dbg_mount",
+            "name": "Flight Hacks",
+            "require": "g.dbg_enable>0",
+            "slot": "mount",
+            "cost": {
+                "gold": 1
+            },
+            "mod": {
+                "dist": 9000
+            }
+        },
+        {
+            "id": "dbg_cellar",
+            "name": "Enough space",
+            "require": "g.dbg_enable>0",
+            "max":10,
+            "repeat":true,
+            "cost": {
+                "gold": 1
+            },
+            "mod": {
+                "space.max":500
+            }
+        }
+    ]
+    }
+}

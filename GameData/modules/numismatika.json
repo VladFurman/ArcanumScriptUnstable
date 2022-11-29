@@ -1,0 +1,773 @@
+{
+	"module": "numismatika",
+	"author": "wunarg",
+	"data": {
+		"skills": [
+			{
+				"id": "shopkeeping",
+				"require": "g.crafting>=2&&g.gold>=500&&g.languages>=4",
+				"desc": "Buy and sell everything in the pursuit of gold",
+				"level": 2,
+				"run": {
+					"stamina": 0.5,
+					"gold": 1
+				},
+				"result": {
+					"sp": 0.05
+				},
+				"mod": {
+					"gold.max": 20,
+					"research.max": 5
+				}
+			},
+			{
+				"id": "debitomancy",
+				"require": "g.debt>=10",
+				"desc": "Master that which is owed, and those who owe it",
+				"level": 3,
+				"run": {
+					"stamina": 0.5,
+					"debt": 1
+				},
+				"result": {
+					"sp": 0.05
+				},
+				"mod": {
+					"debt.max": 50,
+					"research.max": 5
+				}
+			}
+		],
+		"tasks": [
+			{
+				"id": "sellscrolls",
+				"name": "sell Scrolls",
+				"desc": "Sell scrolls to whoever comes along",
+				"verb": "haggling",
+				"require": "g.shopkeeping>=1",
+				"length": 3,
+				"at": {
+					"20": {
+						"result.gold": 8,
+						"cost.scrolls": 1
+					},
+					"50": {
+						"result.gold": 9,
+						"cost.scrolls": 1
+					},
+					"100": {
+						"result.gold": 26,
+						"cost.scrolls": 2,
+						"result.scrolls.max": 0.01
+					},
+					"250": {
+						"result.gold": 50,
+						"cost.scrolls": 5,
+						"result.scrolls.max": 0.01,
+						"result.shopkeeping.max": 0.001
+					}
+				},
+				"cost": {
+					"scrolls": 1
+				},
+				"run": {
+					"stamina": 0.5
+				},
+				"result": {
+					"gold": 7
+				}
+			},
+			{
+				"id": "sellcodices",
+				"name": "sell Codices",
+				"desc": "Sell codices to just about anyone that wants them",
+				"verb": "haggling",
+				"require": "g.shopkeeping>=3",
+				"length": 5,
+				"at": {
+					"20": {
+						"result.gold": 12,
+						"cost.codices": 1
+					},
+					"50": {
+						"result.gold": 15,
+						"cost.codices": 1
+					},
+					"100": {
+						"result.gold": 30,
+						"cost.codices": 2,
+						"result.codices.max": 0.01
+					},
+					"250": {
+						"result.gold": 60,
+						"cost.codices": 5,
+						"result.codices.max": 0.01,
+						"result.shopkeeping.max": 0.001
+					}
+				},
+				"cost": {
+					"codices": 1
+				},
+				"run": {
+					"stamina": 0.8
+				},
+				"result": {
+					"gold": 10
+				}
+			},
+			{
+				"id": "sellbooks",
+				"name": "sell Tomes",
+				"desc": "Even with the best scribes, these are always undervalued",
+				"verb": "haggling",
+				"require": "g.shopkeeping>=6",
+				"length": 15,
+				"at": {
+					"20": {
+						"result.gold": 20,
+						"cost.tomes": 1
+					},
+					"50": {
+						"result.gold": 30,
+						"cost.tomes": 1
+					},
+					"100": {
+						"result.gold": 60,
+						"cost.tomes": 2,
+						"result.tomes.max": 0.01
+					},
+					"250": {
+						"result.gold": 120,
+						"cost.tomes": 5,
+						"result.tomes.max": 0.01,
+						"result.shopkeeping.max": 0.001
+					}
+				},
+				"cost": {
+					"tomes": 1
+				},
+				"run": {
+					"stamina": 1.2
+				},
+				"result": {
+					"gold": 15
+				}
+			},
+			{
+				"id": "mass_sellherbs",
+				"name": "sell Herbs",
+				"desc": "Sell herbs to people looking to make potions or incense.",
+				"verb": "haggling",
+				"require": "g.shopkeeping>=2",
+				"length": 3,
+				"at": {
+					"20": {
+						"result.gold": 2,
+						"cost.herbs": 1
+					},
+					"50": {
+						"result.gold": 3,
+						"cost.herbs": 1
+					},
+					"100": {
+						"result.gold": 6,
+						"cost.herbs": 2,
+						"result.herbs.max": 0.001
+					},
+					"250": {
+						"result.gold": 12,
+						"cost.herbs": 5,
+						"result.herbs.max": 0.001,
+						"result.shopkeeping.max": 0.001
+					}
+				},
+				"cost": {
+					"herbs": 1
+				},
+				"run": {
+					"stamina": 0.2
+				},
+				"result": {
+					"gold": 1
+				}
+			},
+			{
+				"id": "accountingbook",
+				"name": "accounting Ledger",
+				"actname": "calculating expenses",
+				"require": "g.shopkeeping>=4&&g.crafting>=2&&g.languages>=5",
+				"craftable": true,
+				"desc": "Finally get some order into all your wizardly expenses",
+				"length": 50,
+				"max": 1,
+				"cost": {
+					"codices": 1,
+					"scrolls": 20
+				},
+				"run": {
+					"stamina": 3
+				},
+				"effect": {
+					"shopkeeping.exp": 0.5
+				},
+				"mod": {
+					"research.max": 20,
+					"shopkeeping.max": 2,
+					"shopkeeping.rate": 0.5,
+					"composure.max": 1
+				}
+			},
+			{
+				"id": "burningrecords",
+				"name": "ever burning records",
+				"actname": "burning records",
+				"require": "g.debitomancy>=6&&g.firelore>=7&&g.languages>=7",
+				"craftable": true,
+				"desc": "Accumulated records of your debt, forever burning, erasing",
+				"length": 120,
+				"max": 1,
+				"cost": {
+					"tomes": 2
+				},
+				"run": {
+					"stamina": 2,
+					"scrolls": 1,
+					"fire": 0.5
+				},
+				"effect": {
+					"debitomancy.exp": 0.5
+				},
+				"mod": {
+					"debt.rate": -0.02,
+					"debitomancy.max": 2,
+					"debitomancy.rate": 0.5,
+					"firelore.max": 1,
+					"firelore.rate": 0.5
+				},
+				"flavor": "The unending scrolls malicious counterpart."
+			},
+			{
+				"id": "sellgems",
+				"name": "sell Gems",
+				"desc": "Sell gems to jewelers and traders",
+				"verb": "haggling",
+				"require": "g.shopkeeping>=3 && g.gems>=1",
+				"length": 5,
+				"at": {
+					"20": {
+						"result.gold": 40,
+						"cost.gems": 1
+					},
+					"50": {
+						"result.gold": 50,
+						"cost.gems": 1
+					},
+					"100": {
+						"result.gold": 110,
+						"cost.gems": 2
+					},
+					"250": {
+						"result.gold": 260,
+						"cost.gems": 5,
+						"result.gems.max": 0.01,
+						"result.shopkeeping.max": 0.001
+					}
+				},
+				"cost": {
+					"gems": 1
+				},
+				"run": {
+					"stamina": 0.5
+				},
+				"result": {
+					"gold": 40
+				}
+			},
+			{
+				"id": "borrowmoney",
+				"name": "Borrow Money",
+				"desc": "Borrow some fast money from people you know",
+				"verb": "borrowing",
+				"perpetual": true,
+				"require": "g.shopkeeping>=6",
+				"run": {
+					"debt": 20
+				},
+				"effect": {
+					"gold": 20
+				}
+			},
+			{
+				"id": "prisonlabor",
+				"name": "prison Labor",
+				"desc": "Manual labor to pay off your debt, what a horrific thought",
+				"verb": "cracking rocks",
+				"require": "g.debitomancy>=1",
+				"perpetual": true,
+				"length": 20,
+				"at": {
+					"20": {
+						"run.stamina": -0.2
+					},
+					"50": {
+						"result.debt": -5
+					}
+				},
+				"run": {
+					"stamina": 1,
+					"hp": 0.1
+				},
+				"result": {
+					"debt": -10
+				},
+				"flavor": "No magic allowed since the chronomancy incident."
+			},
+			{
+				"id": "encase_det",
+				"name": "Expand Accounting Logs",
+				"desc": "Increase the amount of files on owed money",
+				"verb": "inking papers",
+				"require": "g.debitomancy>=10",
+				"perpetual": true,
+				"length": 120,
+				"at": {
+					"120": {
+						"run.stamina": -0.2
+					},
+					"350": {
+						"result.debt": -5
+					}
+				},
+				"run": {
+					"stamina": 1,
+					"research": 12,
+					"scrolls": 0.15,
+					"codices": 0.05,
+					"tomes": 0.015
+				},
+				"result": {
+					"debitomancy.max": 0.0083
+				},
+				"flavor": "Maybe if you grow your logs you can hide away who you owe money to."
+			},
+			{
+				"id": "lendgold",
+				"name": "lend Gold",
+				"desc": "Lend gold to those who need and those who want",
+				"verb": "moneylending",
+				"require": "g.debitomancy>=3",
+				"length": 20,
+				"at": {
+					"20": {
+						"length": -2,
+						"run.stamina": -0.2
+					}
+				},
+				"cost": {
+					"gold": 200
+				},
+				"run": {
+					"stamina": 1
+				},
+				"result": {
+					"gold": "150~300"
+				}
+			}
+		],
+		"upgrades": [
+			{
+				"id": "tradingstall",
+				"name": "trading stall",
+				"desc": "Makes buyers come to you and not the other way around",
+				"require": "g.shopkeeping>=5",
+				"max": 1,
+				"cost": {
+					"gold": 400
+				},
+				"mod": {
+					"shopkeeping.max": 1,
+					"sellscrolls.run.stamina": -0.4,
+					"sellgems.run.stamina": -0.4
+				}
+			},
+			{
+				"id": "colorfulsigns",
+				"name": "colorful sign",
+				"desc": "You could probably sell things faster with some fancy illusions and effects",
+				"require": "g.shopkeeping>=7",
+				"max": 1,
+				"cost": {
+					"gold": 300,
+					"research": 500,
+					"managem": 5
+				},
+				"mod": {
+					"shopkeeping.max": 1,
+					"sellscrolls.length": -1,
+					"sellgems.length": -2
+				}
+			},
+			{
+				"id": "charmingsigns",
+				"name": "enchanted sign",
+				"desc": "Why convince buyers when you have magic",
+				"require": "g.shopkeeping>=7 && g.charms>=5",
+				"max": 1,
+				"cost": {
+					"gold": 1000,
+					"research": 2500,
+					"managem": 15
+				},
+				"mod": {
+					"shopkeeping.max": 1,
+					"charms.rate": 0.5,
+					"sellscrolls.length": -1,
+					"sellgems.length": -1
+				}
+			},
+			{
+				"id": "gemtradercontact",
+				"name": "gemtrader contact",
+				"desc": "You know someone who will sell you gems for better prices",
+				"require": "g.shopkeeping>=7",
+				"max": 1,
+				"cost": {
+					"gold": 1500,
+					"research": 2000
+				},
+				"mod": {
+					"buygem.cost.gold": -20
+				}
+			},
+			{
+				"id": "splendorandriches",
+				"name": "splendor and riches",
+				"desc": "Sometimes a lot of gold and greed is all you need to be famous",
+				"require": "g.shopkeeping>=12",
+				"max": 1,
+				"cost": {
+					"gold": 50000,
+					"gems": 150
+				},
+				"result": {
+					"gold.max": 1000,
+					"fame": 2
+				}
+			},
+			{
+				"id": "moredebt",
+				"name": "more lenders",
+				"desc": "Find more people to lend you money",
+				"require": "g.debitomancy>=2",
+				"max": 3,
+				"cost": {
+					"research": 1000,
+					"gold": 500,
+					"gems": 10
+				},
+				"mod": {
+					"debt.max": 500,
+					"borrowmoney.run.debt": 10,
+					"borrowmoney.effect.gold": 10
+				}
+			},
+			{
+				"id": "creativeaccounting",
+				"name": "creative accounting",
+				"desc": "Just a few rounding errors here and there",
+				"require": "g.debitomancy>=4",
+				"max": 1,
+				"cost": {
+					"research": 1000,
+					"gold": 500,
+					"scrolls": 40
+				},
+				"mod": {
+					"debt.rate": -0.1
+				}
+			},
+			{
+				"id": "cheaperdebt",
+				"name": "better lenders",
+				"desc": "With enough research you can find money lenders which don't have such ridiculous interest rates",
+				"require": "g.debitomancy>=6",
+				"max": 1,
+				"cost": {
+					"research": 2000
+				},
+				"mod": {
+					"debt.mod.gold.rate": 0.001,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "debttravel",
+				"name": "debtor's travels",
+				"desc": "If you travel far enough surely they can't find you again",
+				"require": "g.debitomancy>=3&&g.a_travel>0",
+				"max": 1,
+				"cost": {
+					"research": 500
+				},
+				"mod": {
+					"a_travel.effect.debt": -0.5,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "debttirckery",
+				"name": "debtor's trick",
+				"desc": "Fake names, fake thoughts, whatever is needed to escape the debt",
+				"require": "g.debitomancy>=5&&g.trickery>=2",
+				"max": 1,
+				"cost": {
+					"research": 500
+				},
+				"mod": {
+					"trickery.mod.debt.rate": -0.01,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "debtgeomancy",
+				"name": "enchanted shackles",
+				"desc": "Sneak a geomancy enchantment into the prison labor camps to make it a bit easier",
+				"require": "g.earthlore>=7&&g.debitomancy>5",
+				"max": 1,
+				"cost": {
+					"earthgem": 2,
+					"research": 500
+				},
+				"mod": {
+					"prisonlabor.run.stamina": -0.5,
+					"prisonlabor.result.debt": -5,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "debtmurder",
+				"name": "debtors murder",
+				"desc": "You don't owe debts to corpses",
+				"require": "g.debitomancy>=2&&g.murder>0",
+				"max": 1,
+				"cost": {
+					"research": 350,
+					"bodies": 3
+				},
+				"mod": {
+					"murder.result.debt": -2,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "debtdemon",
+				"name": "demon money lending",
+				"desc": "souls are totally acceptable collateral",
+				"require": "g.debitomancy>=2&&g.demonology>6&&g.souls>0",
+				"max": 1,
+				"cost": {
+					"research": 1200,
+					"bonedust": 10
+				},
+				"mod": {
+					"lendgold.result.soul": 0.01,
+					"debt.max": 250,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "debtvirtuous",
+				"name": "virtuous credibility",
+				"desc": "When people trust you debt payments can be slowed a bit",
+				"need": "(g.virtue - g.evilamt)>50",
+				"require": "g.debitomancy>=4&&!g.vile",
+				"max": 1,
+				"cost": {
+					"research": 500,
+					"gold": 1000
+				},
+				"mod": {
+					"debt.mod.gold.rate": 0.0002,
+					"debt.max": 250,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "curselendgold",
+				"name": "cursed gold",
+				"desc": "Mark your gold with terrible curses befalling those who don't pay back their debts to you",
+				"require": "g.debitomancy>=4&&g.shadowlore>=6",
+				"max": 1,
+				"cost": {
+					"research": 1000,
+					"gold": 300,
+					"shadowgem": 5
+				},
+				"mod": {
+					"lendgold.result.gold.min": 50,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "planarlendgold",
+				"name": "interplanar lending",
+				"desc": "Extend your money lending services to other planes",
+				"require": "g.debitomancy>=5&&g.planeslore>=10",
+				"max": 1,
+				"cost": {
+					"research": 2000,
+					"gold": 1000,
+					"managem": 5
+				},
+				"mod": {
+					"lendgold.result.gold.max": 250,
+					"lendgold.result.gold.min": 200,
+					"lendgold.cost.gold": 200,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "animallendgold",
+				"name": "personal rabbit mafia",
+				"desc": "There is nowhere you can hide from them",
+				"require": "g.debitomancy>=9&&g.animals>=12",
+				"max": 1,
+				"cost": {
+					"research": 4000,
+					"gold": 3000,
+					"naturegem": 10
+				},
+				"mod": {
+					"lendgold.result.gold.max": 150,
+					"lendgold.cost.herb": 1,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "debtrevelation",
+				"name": "debtors revelation",
+				"desc": "What happens when you have less than nothing",
+				"require": "g.debitomancy>=5&&g.voidlore>0",
+				"warn": true,
+				"max": 1,
+				"cost": {
+					"research": 10000,
+					"managem": 20,
+					"debt": 100
+				},
+				"mod": {
+					"debt.mod.voidlore.max": 0.001,
+					"debt.rate": 0.05
+				}
+			}
+		],
+		"furniture": [
+			{
+				"id": "debttransmuter",
+				"name": "debt transmuter",
+				"desc": "Turn debt and gold into nothing",
+				"require": "g.debitomancy>=5&&g.voidlore>3&&g.debtrevelation",
+				"max": 3,
+				"cost": {
+					"gold": 1000,
+					"gems": 40,
+					"arcana": 5,
+					"managem": 10
+				},
+				"mod": {
+					"debt.rate": -0.01,
+					"gold.rate": -0.01,
+					"void.rate": 0.01,
+					"space": 3,
+					"debitomancy.max": 0.5
+				}
+			},
+			{
+				"id": "bazaar",
+				"name": "bazaar",
+				"desc": "A bustle of traders and merchants",
+				"require": "g.shopkeeping>=10",
+				"max": 1,
+				"cost": {
+					"gold": 3000,
+					"gems": 50
+				},
+				"mod": {
+					"gold.rate": 0.3,
+					"gold.max": 100,
+					"space": 30,
+					"shopkeeping.max": 2,
+					"scrollmonger.mod.space": -1,
+					"gemmonger.mod.space": -1
+				}
+			},
+			{
+				"id": "scrollmonger",
+				"name": "scroll monger",
+				"desc": "Sells scrolls for gold, sells scrolls faster the more you have",
+				"require": "g.shopkeeping>=7&&g.scrolls>=30",
+				"repeat": true,
+				"cost": {
+					"gold": 100
+				},
+				"mod": {
+					"scrolls.mod.gold.rate": 0.005,
+					"scrolls.mod.scrolls.rate": -0.001,
+					"space": 3
+				}
+			},
+			{
+				"id": "gemmonger",
+				"name": "gem monger",
+				"desc": "Sells gems for gold, sells gems faster the more you have",
+				"require": "g.shopkeeping>=9&&g.gems>=30",
+				"repeat": true,
+				"cost": {
+					"gold": 200
+				},
+				"mod": {
+					"gems.mod.gold.rate": 0.035,
+					"gems.mod.gems.rate": -0.001,
+					"space": 3
+				}
+			},
+			{
+				"id": "goldpile",
+				"name": "gold pile",
+				"desc": "Why sleep like a peasant, when you can sleep like a dragon",
+				"require": "g.shopkeeping>=8",
+				"max": 1,
+				"tags": "bed",
+				"slot": "bed",
+				"cost": {
+					"gold": 2000
+				},
+				"mod": {
+					"rest": {
+						"effect": {
+							"stamina": -0.1,
+							"prismatic": 0.1
+						}
+					},
+					"gold.rate": 0.05,
+					"space": 2,
+					"shopkeeping.max": 1
+				}
+			}
+		],
+		"resources": [
+			{
+				"id": "debt",
+				"desc": "Debt is gnawing at you",
+				"require": "g.debt>=1",
+				"max": 500,
+				"group": "adversities",
+				"reverse": true,
+				"mod": {
+					"gold.rate": -0.003,
+					"debt.rate": -0.001
+				}
+			}
+		]
+	}
+}

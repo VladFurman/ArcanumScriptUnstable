@@ -1,0 +1,1501 @@
+{
+	"module": "pyromancer",
+	"author": "regallion",
+	"email": "",
+	"git": "",
+	"data": {
+		"skills": [
+			{
+				"id": "flamesculpting",
+				"name": "soulflames",
+				"require": "g.fulmination>0",
+				"desc": "Let the world see your radiance",
+				"level": 8,
+				"max": 1,
+				"run": {
+					"fire": 2
+				},
+				"mod": {
+					"fire.max": 1,
+					"soulember.max": 1
+				}
+			}
+		],
+		"tasks": [
+			{
+				"id": "addember",
+				"name": "Ignite ember",
+				"desc": "Ignite a soul ember",
+				"require": "g.flamesculpting>0",
+				"fill": [
+					"soulember"
+				],
+				"cost": {
+					"fire": 10
+				},
+				"result": {
+					"soulember": 1
+				}
+			},
+			{
+				"id": "removeember",
+				"name": "Quench ember",
+				"desc": "Quench a soul ember",
+				"require": "g.flamesculpting>0",
+				"cost": {
+					"soulember": 1
+				},
+				"result": {
+					"blazingsoul": 15
+				}
+			},
+			{
+				"id": "dissipateheat",
+				"name": "Disperse heat",
+				"cd": 1800,
+				"desc": "Desperately release excess heat.",
+				"require": "g.blazingsoul>80",
+				"result": {
+					"blazingsoul": -100
+				}
+			},
+			{
+				"id": "heatup",
+				"name": "Fan the flames",
+				"cd": 1800,
+				"desc": "Immediately generate a large amount of heat.",
+				"require": "g.soulember>0",
+				"cost": {
+					"fire": 15
+				},
+				"result": {
+					"soulheat": 50
+				}
+			},
+			{
+				"id": "craftpureembers",
+				"name": "produce pure embers",
+				"desc": "Convert one of your soul embers into a pure ember.",
+				"verb": "refining embers",
+				"require": "g.soulember>0",
+				"fill": [
+					"pureember"
+				],
+				"length": 300,
+				"cost": {
+					"soulheat": 50,
+					"soulember": 1
+				},
+				"result": {
+					"pureember": 1
+				}
+			},
+			{
+				"id": "remakeclaws",
+				"name": "call efreet's claws",
+				"desc": "The flames never die, the merely dissipate.",
+				"verb": "Recalling",
+				"require": "g.makeclaws>0",
+				"craftable": true,
+				"length": 10,
+				"cost": {
+					"firegem": 30,
+					"firerune": 10,
+					"sindel": 1,
+					"pureember": 5
+				},
+				"run": {
+					"stamina": 8,
+					"fire": 5
+				},
+				"loot": {
+					"ifritclaws": 1
+				}
+			},
+			{
+				"id": "makeclaws",
+				"name": "efreet's claws",
+				"desc": "Biting flames, shaped to rend and tear those who oppose you. Surrender to the destruction.",
+				"max": 1,
+				"verb": "Creating Masterpiece",
+				"require": "g.firelord>0&&g.flameofcreation>0",
+				"craftable": true,
+				"length": 180,
+				"cost": {
+					"firegem": 300,
+					"firerune": 80,
+					"sindel": 5,
+					"ichor": 5,
+					"pureember": 25
+				},
+				"run": {
+					"stamina": 4,
+					"fire": 3
+				},
+				"loot": {
+					"ifritclaws": 1
+				}
+			},
+			{
+				"id": "decipherpyronotes",
+				"name": "decipher pyromancer's notes",
+				"desc": "The notes you found in that shack are finally starting to make sense.",
+				"verb": "deciphering",
+				"require": "(g.pyromancer+g.firebrand+g.firelord)>0&&g.consumedshack>0",
+				"max": 1,
+				"length": 600,
+				"run": {
+					"research": 5,
+					"fire": 2
+				}
+			}
+		],
+		"upgrades": [
+			{
+				"id": "decipherednote_fulmination",
+				"name": "notes on fulmination",
+				"desc": "Upon achieving fulmination a pyromancer becomes capable of storing and utilizing the fire within to empower his spells. This is not without downside however, as it leaves one vulnerable to potentially lethal side-effects",
+				"require": "g.decipherpyronotes>0",
+				"max": 1
+			},
+			{
+				"id": "decipherednote_soulember",
+				"name": "notes on soul embers",
+				"desc": "Soul embers can be seen as fuel for the fire. When ignited, they cause the radiant energies to fill the practitioner, empowering their fire arts. The more embers ignited, the more potent the effects become... but so do the drawbacks",
+				"require": "g.decipherpyronotes>0",
+				"max": 1
+			},
+			{
+				"id": "decipherednote_soulheat",
+				"name": "notes on blazing heat",
+				"desc": "Upon casting fire spells, igniting enough soul embers or utilizing specialized techniques, a mage will begin to accumulate what i term 'Blazing heat'. This is a form of soul energy, empowering most fire spells and inducing a rapid replenishment of fire-aspected mana. As the amount grows, so do the effects, but one should avoid gathering too much",
+				"require": "g.decipherpyronotes>0",
+				"max": 1
+			},
+			{
+				"id": "decipherednote_blazingsoul",
+				"name": "notes on consuming flames",
+				"desc": "A negative effect has been observed from accumulating too much blazing heat or rapid use of fire spells. A human can only control such potent energies to a limited extent, an excess spilling over into what i termed 'Consuming flames'. A ghastly sight, the victims writhing in agony as their souls and bodies burn. Death has been a consistent end for those unable to quench the flames quickly",
+				"require": "g.decipherpyronotes>0",
+				"max": 1
+			},
+			{
+				"id": "decipherednote_heatmanagement",
+				"name": "notes on heat management",
+				"desc": "I have devised a number of methods to avoid becoming consumed by flames over the course of my experiments. Here is a record of ones i found particularly effective. 1. Keep your soul ember count balanced. The more soul embers you have, the more potent the blazing heat is and the easier it becomes to gain consuming flames. 2. Excess blazing heat can be shed by utilizing dedicated spells of other elements. 3. Imrove your level of control over the flames. Only specialized fire mages may hope to achieve that. 4. In a desperate situation....",
+				"require": "g.decipherpyronotes>0",
+				"max": 1
+			},
+			{
+				"id": "restingpoint",
+				"name": "equilibrium",
+				"desc": "Given enough time, any system tends toward equilibrium",
+				"require": "g.flamesculpting>0",
+				"max": 1,
+				"cost": {
+					"fire": 1,
+					"water": 1
+				},
+				"mod": {
+					"blazingsoul.rate": -0.5
+				}
+			},
+			{
+				"id": "fulmination",
+				"name": "fulmination",
+				"desc": "Unlock the fiery potential within yourself",
+				"require": "g.decipherednote_fulmination>0&&g.decipherednote_soulember>0&&g.decipherednote_soulheat>0&&g.decipherednote_blazingsoul>0&&g.decipherednote_heatmanagement>0",
+				"lock": [
+					"searingbolt",
+					"firebolt",
+					"firedart",
+					"magmabolt",
+					"firestorm",
+					"flamestrike"
+				],
+				"max": 1,
+				"cost": {
+					"fire": 10,
+					"firegem": 15
+				}
+			},
+			{
+				"id": "thermalstudies",
+				"name": "thermal studies",
+				"desc": "A true adept of the flame must be well versed in the mysteries of thermodynamics",
+				"require": "g.flamesculpting>0&&g.pyromancer>0",
+				"max": 1,
+				"cost": {
+					"watergem": 25,
+					"firegem": 25,
+					"pureember": 2
+				},
+				"mod": {
+					"restingpoint.mod.blazingsoul.rate": -0.2,
+					"soulheat.mod.fire.rate": 0.005
+				}
+			},
+			{
+				"id": "thermalbranding",
+				"name": "thermal branding",
+				"desc": "Application of arcane brands allows for significantly faster heat transfer",
+				"require": "g.flamesculpting>0&&g.firebrand>0",
+				"max": 1,
+				"cost": {
+					"waterrune": 25,
+					"firerune": 25,
+					"pureember": 5
+				},
+				"mod": {
+					"restingpoint.mod.blazingsoul.rate": -0.3,
+					"soulheat.mod.fire.rate": 0.005
+				}
+			},
+			{
+				"id": "thermaldomination",
+				"name": "thermal dominion",
+				"desc": "Almost as if an invisible demon is at your disposal",
+				"require": "g.flamesculpting>0&&g.firelord>0",
+				"max": 1,
+				"cost": {
+					"waterrune": 50,
+					"firerune": 50,
+					"runestones": 25,
+					"watergem": 75,
+					"firegem": 75,
+					"pureember": 8
+				},
+				"mod": {
+					"restingpoint.mod.blazingsoul.rate": -0.5,
+					"soulheat.mod.fire.rate": 0.005
+				},
+				"flavor": "You would probably name him Maxwell, if he existed"
+			},
+			{
+				"id": "flamedomain",
+				"name": "flame's domain",
+				"desc": "Harness the power of the volcano to amplify your magics",
+				"require": "g.flamesculpting>0&&(g.pyromancer+g.firebrand)>0",
+				"max": 1,
+				"cost": {
+					"firegem": 100,
+					"pureember": 5
+				},
+				"mod": {
+					"volcano.mod.soulember.max": 1,
+					"volcano.mod.soulheat.max": 25,
+					"volcano.mod.blazingsoul.max": 50,
+					"volcano.mod.embercapacitor.mod.space": -10,
+					"volcano.mod.heatconductor.mod.space": -10,
+					"volcano.mod.heatcapacitor.mod.space": -20
+				}
+			},
+			{
+				"id": "cremation",
+				"name": "cremation",
+				"desc": "Add a little extra to your repertoire of funerary services",
+				"require": "g.pyromancer>0&&g.embalm>0",
+				"max": 1,
+				"cost": {
+					"gold": 400,
+					"research": 250,
+					"pureember": 1
+				},
+				"mod": {
+					"embalm.effect.gold": 0.5,
+					"embalm.run.fire": 1
+				},
+				"flavor": "Few are capable of reducing a body to ashes. You are amongst them"
+			},
+			{
+				"id": "wordsoffire",
+				"name": "words of fire",
+				"desc": "They say the flames hold the secrets of every book ever burned. Perhaps there is truth to that",
+				"require": "g.flamesculpting>=3",
+				"max": 1,
+				"cost": {
+					"firegem": 25,
+					"research": 5000,
+					"pureember": 2
+				},
+				"mod": {
+					"sublimate.result.research.max": 3,
+					"sublimate.result.research": 250,
+					"sublimate.cost.codices": -2
+				},
+				"flavor": "Best not think about all the books burned for being 'indecent'"
+			},
+			{
+				"id": "flowingflames",
+				"name": "flowing flames",
+				"desc": "The flames flicker and dance, and so do you",
+				"require": "g.firebrand>0",
+				"max": 1,
+				"cost": {
+					"runestones": 25,
+					"research": 5000,
+					"pureember": 3
+				},
+				"mod": {
+					"speed": 1,
+					"dodge": 3
+				}
+			},
+			{
+				"id": "firebranding",
+				"name": "brand of fire",
+				"desc": "Brand yourself with sigils of fire",
+				"require": "g.firebrand>0",
+				"max": 1,
+				"cost": {
+					"runestones": 25,
+					"firegem": 50,
+					"pureember": 3
+				},
+				"mod": {
+					"player.bonuses.fire": 1,
+					"restingpoint.mod.blazingsoul.rate": -0.05
+				},
+				"flavor": "Those in the know will recognize it"
+			},
+			{
+				"id": "exoticfuels",
+				"name": "exotic fuels",
+				"desc": "A collection of arcane materials that facilitate production and imbuement of fire into objects",
+				"require": "g.pyromancer>0",
+				"max": 1,
+				"cost": {
+					"firegem": 10,
+					"gold": 500,
+					"pureember": 1
+				},
+				"mod": {
+					"imbuefiregem.cost.fire": -3,
+					"craftfirerune.cost.firegem": -5
+				},
+				"flavor": "A lot of things burn. Some of them, burn in ways most haven't seen before"
+			},
+			{
+				"id": "hellfiretinctures",
+				"name": "hellfire tinctures",
+				"desc": "Most alchemists would advise running upon encountering the concoctions you can produce",
+				"require": "g.firelord>0",
+				"max": 1,
+				"cost": {
+					"firerune": 15,
+					"pureember": 8
+				},
+				"mod": {
+					"pot_ignition.use.attack.dot.dmg.min": 5,
+					"pot_ignition.use.attack.dot.dmg.max": 5,
+					"pot_explodium.use.attack.dot.dmg.max": 6,
+					"pot_explodium.use.attack.dot.dmg.max": 7
+				},
+				"flavor": "...it is also hypergolic with such things as cloth, wood, and hapless apprentices, not to mention asbestos, sand, and water-with which it reacts explosively"
+			},
+			{
+				"id": "volcanostabilization",
+				"name": "volcano stabilization",
+				"desc": "Control the flow of magma to allow more space to be effectively used.",
+				"require": "g.firelord>0&&g.volcano>0",
+				"max": 40,
+				"cost": {
+					"firerune": 25,
+					"pureember": 5
+				},
+				"mod": {
+					"volcano.mod.space.max": 5,
+					"volcanostabilization.cost.pureember": 5,
+					"volcanostabilization.cost.firerune": 2,
+					"pureember.max": 5,
+					"firerune.max": 2
+				},
+				"flavor": "Convection schmonvection"
+			},
+			{
+				"id": "hightempsmelting",
+				"name": "high-temperature smelting",
+				"desc": "Use your mastery of fire to extract additional materials from mined ore.",
+				"require": "g.flamesculpting>2&&g.act_mine>0",
+				"max": 40,
+				"cost": {
+					"firegem": 25,
+					"research": 2000,
+					"gold": 1500,
+					"pureember": 3
+				},
+				"mod": {
+					"act_mine.effect.gems": 0.05,
+					"act_mine.effect.firegem": 0.03,
+					"act_mine.effect.pureember": 0.0003
+				}
+			},
+			{
+				"id": "flameofcreation",
+				"name": "flame of creation",
+				"desc": "capture an ember of primordial flames for your own use.",
+				"require": "g.firelord>0&&g.flamesculpting>2",
+				"max": 40,
+				"cost": {
+					"firerune": 25,
+					"tomes": 150,
+					"firegem": 100,
+					"gems": 100,
+					"pureember": 25
+				},
+				"result": {
+					"fame": 5
+				},
+				"mod": {
+					"soulember.max": 2,
+					"pureember.max": 5,
+					"soulember.mod.soulheat.max": 3,
+					"soulember.mod.blazingsoul.max": 2
+				},
+				"flavor": "With this, the possibilities seem endless"
+			}
+		],
+		"spells": [
+			{
+				"id": "firedart",
+				"name": "fire dart",
+				"level": 1,
+				"require": "g.spellbook.value>0&&g.firelore>0",
+				"school": "fire",
+				"buy": {
+					"research": 25,
+					"scrolls": 1
+				},
+				"at": {
+					"25": {
+						"attack.damage.max": 1.5
+					},
+					"75": {
+						"attack.damage.min": 1.5
+					},
+					"300": {
+						"attack.damage.max": 2,
+						"attack.damage.min": 1,
+						"attack.tohit": 2
+					}
+				},
+				"cost": {
+					"fire": 1
+				},
+				"attack": {
+					"damage": "3~5",
+					"kind": "fire",
+					"tohit": 1
+				}
+			},
+			{
+				"id": "firedart_pyro",
+				"name": "blazing dart",
+				"level": 1,
+				"require": "g.spellbook.value>0&&g.firelore>0&&g.fulmination>0",
+				"school": "fire",
+				"buy": {
+					"research": 25,
+					"scrolls": 1
+				},
+				"cost": {
+					"fire": 2
+				},
+				"result": {
+					"soulheat": 1
+				},
+				"attack": {
+					"hits": [
+						{
+							"targets": "enemy",
+							"damage": "5.5~8.5",
+							"kind": "fire",
+							"tohit": 3
+						},
+						{
+							"targets": "self",
+							"dot": {
+								"id": "firedartflicker",
+								"name": "flickering",
+								"duration": 5,
+								"mod": {
+									"firedart_pyro.result.blazingsoul": 3
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"id": "firebolt",
+				"name": "fire bolt",
+				"level": 2,
+				"desc": "A small bolt of flame.",
+				"require": "g.firedart>0&&g.firelore>=5",
+				"school": "fire",
+				"buy": {
+					"research": 30,
+					"scrolls": 5,
+					"firegem": 1
+				},
+				"at": {
+					"25": {
+						"attack.damage.max": 2
+					},
+					"75": {
+						"attack.damage.min": 2
+					},
+					"300": {
+						"attack.damage.max": 2,
+						"attack.damage.min": 2,
+						"attack.tohit": 3
+					}
+				},
+				"cost": {
+					"fire": 4
+				},
+				"attack": {
+					"damage": "4~5",
+					"tohit": 3,
+					"kind": "fire"
+				}
+			},
+			{
+				"id": "firebolt_pyro",
+				"name": "blazing bolt",
+				"level": 2,
+				"desc": "A small bolt of flame.",
+				"require": "g.firedart_pyro>0&&g.firelore>=5&&g.fulmination>0",
+				"school": "fire",
+				"buy": {
+					"research": 30,
+					"scrolls": 5,
+					"firegem": 1
+				},
+				"cost": {
+					"fire": 5
+				},
+				"result": {
+					"soulheat": 2
+				},
+				"attack": {
+					"hits": [
+						{
+							"targets": "enemy",
+							"damage": "8~9",
+							"tohit": 6,
+							"kind": "fire"
+						},
+						{
+							"targets": "self",
+							"dot": {
+								"id": "fireboltflicker",
+								"name": "flickering",
+								"duration": 5,
+								"mod": {
+									"firebolt_pyro.result.blazingsoul": 5
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"id": "searingbolt",
+				"name": "searing bolt",
+				"level": 3,
+				"desc": "A bolt of fire with lingering flames",
+				"school": "fire",
+				"require": "g.firebolt>0&&g.firelore>=8&&g.tier1>0",
+				"buy": {
+					"research": 100,
+					"codices": 10,
+					"firegem": 3
+				},
+				"cost": {
+					"fire": 5
+				},
+				"at": {
+					"30": {
+						"attack.damage.max": 2
+					},
+					"100": {
+						"attack.damage.min": 2
+					},
+					"300": {
+						"attack.damage.max": 3,
+						"attack.damage.min": 2,
+						"attack.tohit": 5
+					}
+				},
+				"attack": {
+					"damage": "6~8",
+					"tohit": 5,
+					"kind": "fire",
+					"dot": {
+						"dmg": "2~3",
+						"duration": 10
+					}
+				}
+			},
+			{
+				"id": "searingbolt_pyro",
+				"name": "incinerating bolt",
+				"level": 3,
+				"desc": "A bolt of fire with lingering flames",
+				"require": "g.firebolt_pyro>0&&g.firelore>=8&&g.tier1>0&&g.fulmination>0",
+				"school": "fire",
+				"buy": {
+					"research": 100,
+					"codices": 10,
+					"firegem": 3
+				},
+				"cost": {
+					"fire": 6
+				},
+				"result": {
+					"soulheat": 3
+				},
+				"attack": {
+					"hits": [
+						{
+							"targets": "enemy",
+							"damage": "10~13",
+							"tohit": 10,
+							"kind": "fire",
+							"dot": {
+								"dmg": "2~3",
+								"kind": "fire",
+								"duration": 10
+							}
+						},
+						{
+							"targets": "self",
+							"dot": {
+								"id": "searingboltflicker",
+								"name": "flickering",
+								"duration": 5,
+								"mod": {
+									"searingbolt_pyro.result.blazingsoul": 7
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"id": "magmabolt",
+				"name": "magma bolt",
+				"level": 5,
+				"desc": "A bolt of liquid-hot magma",
+				"school": "fire",
+				"require": "g.searingbolt>0&&g.firelore>=12&&g.tier3>0",
+				"buy": {
+					"research": 100,
+					"tomes": 1,
+					"firegem": 10
+				},
+				"cost": {
+					"fire": 7
+				},
+				"at": {
+					"50": {
+						"attack.damage.max": 3
+					},
+					"150": {
+						"attack.damage.min": 3
+					},
+					"500": {
+						"attack.damage.max": 4,
+						"attack.damage.min": 3,
+						"attack.tohit": 7
+					}
+				},
+				"attack": {
+					"damage": "12~15",
+					"tohit": 7,
+					"kind": "fire",
+					"dot": {
+						"dmg": "4~6",
+						"kind": "fire",
+						"duration": 20
+					}
+				}
+			},
+			{
+				"id": "magmabolt_pyro",
+				"name": "magma blast",
+				"level": 5,
+				"desc": "A bolt of liquid-hot magma",
+				"require": "g.searingbolt_pyro>0&&g.firelore>=12&&g.tier3>0&&g.fulmination>0",
+				"school": "fire",
+				"buy": {
+					"research": 100,
+					"tomes": 1,
+					"firegem": 10
+				},
+				"cost": {
+					"fire": 8
+				},
+				"result": {
+					"soulheat": 5
+				},
+				"attack": {
+					"hits": [
+						{
+							"targets": "enemy",
+							"damage": "18~22",
+							"tohit": 14,
+							"kind": "fire",
+							"dot": {
+								"dmg": "4~6",
+								"kind": "fire",
+								"duration": 20
+							}
+						},
+						{
+							"targets": "self",
+							"dot": {
+								"id": "magmaboltflicker",
+								"name": "flickering",
+								"duration": 5,
+								"mod": {
+									"magmabolt_pyro.result.blazingsoul": 10
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"id": "flamestrike",
+				"school": "fire",
+				"desc": "Imbue your weapon with flame before striking.",
+				"level": 6,
+				"cd": 2,
+				"require": "g.bladelore>=4&&g.firelore>=8",
+				"buy": {
+					"tomes": 5,
+					"firegem": 10
+				},
+				"cost": {
+					"fire": 6,
+					"hp": 25,
+					"stamina": 2
+				},
+				"attack": {
+					"kind": "fire",
+					"bonus": 5,
+					"dmg": "((a.weapon.damage||0)+a.getBonus( a.weapon.kind ))*1.2"
+				}
+			},
+			{
+				"id": "flamestrike_pyro",
+				"name": "blaze strike",
+				"school": "fire",
+				"desc": "Imbue your weapon with flame before striking.",
+				"level": 4,
+				"cd": 2,
+				"require": "g.bladelore>=4&&g.firelore>=8&&g.fulmination>0",
+				"buy": {
+					"tomes": 5,
+					"firegem": 10
+				},
+				"cost": {
+					"fire": 4,
+					"hp": 15,
+					"stamina": 2
+				},
+				"result": {
+					"soulheat": 3
+				},
+				"attack": {
+					"hits": [
+						{
+							"targets": "enemy",
+							"kind": "fire",
+							"bonus": 5,
+							"dmg": "((a.weapon.damage||0)+a.getBonus( a.weapon.kind ))*1.2"
+						},
+						{
+							"targets": "self",
+							"dot": {
+								"id": "flamestrikeflicker",
+								"name": "flickering",
+								"duration": 5,
+								"mod": {
+									"flamestrike_pyro.result.blazingsoul": 8
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"id": "firestorm",
+				"school": "fire",
+				"level": 17,
+				"desc": "Rain hell from above",
+				"cd": 66,
+				"require": "g.firelore>=18&&g.tier4>0",
+				"buy": {
+					"research": 4000,
+					"firegem": 25,
+					"tomes": 20
+				},
+				"cost": {
+					"fire": 14
+				},
+				"attack": {
+					"hits": [
+						{
+							"targets": "all",
+							"dot": {
+								"kind": "fire",
+								"dmg": "20~30",
+								"duration": 30
+							}
+						},
+						{
+							"id": "firestormprotection",
+							"name": "firestorm protection",
+							"targets": "allies",
+							"dot": {
+								"duration": 30,
+								"mod": {
+									"self.resist.fire": 80
+								}
+							}
+						}
+					]
+				},
+				"flavor": ""
+			},
+			{
+				"id": "conflagration",
+				"name": "conflagration",
+				"school": "fire",
+				"level": 12,
+				"desc": "Incinerate all who stand before you",
+				"cd": 66,
+				"require": "g.firelore>=18&&g.tier4>0&&g.fulmination>0",
+				"buy": {
+					"research": 4000,
+					"firegem": 25,
+					"tomes": 20
+				},
+				"cost": {
+					"fire": 15
+				},
+				"result": {
+					"soulheat": 15,
+					"blazingsoul": 10
+				},
+				"attack": {
+					"targets": "enemies",
+					"dot": {
+						"kind": "fire",
+						"dmg": "20~30",
+						"duration": 30
+					}
+				},
+				"flavor": ""
+			},
+			{
+				"id": "searingradiance",
+				"name": "searing radiance",
+				"school": "fire",
+				"level": 15,
+				"desc": "All shall perish in flames",
+				"cd": 15,
+				"require": "g.firelord>0&&g.fulmination>0",
+				"buy": {
+					"research": 4000,
+					"firerune": 25,
+					"tomes": 50
+				},
+				"cost": {
+					"soulheat": 25,
+					"fire": 20
+				},
+				"result": {
+					"blazingsoul": 10
+				},
+				"attack": {
+					"targets": "enemies",
+					"dot": {
+						"kind": "fire",
+						"dmg": "10~20",
+						"duration": 15
+					}
+				},
+				"flavor": "Let them face the inferno"
+			},
+			{
+				"id": "starfire",
+				"name": "starfire",
+				"school": "fire",
+				"level": 10,
+				"desc": "Like the power of the sun",
+				"cd": 120,
+				"require": "g.firelord>0&&g.fulmination>0",
+				"buy": {
+					"research": 4000,
+					"firerune": 25,
+					"tomes": 50
+				},
+				"cost": {
+					"sindel": 1,
+					"fire": 25
+				},
+				"result": {
+					"soulheat": 25
+				},
+				"attack": {
+					"targets": "enemies",
+					"dot": {
+						"kind": "fire",
+						"dmg": "10~15",
+						"duration": 120
+					}
+				}
+			},
+			{
+				"id": "water_heatdown",
+				"name": "scalding steam",
+				"school": "water",
+				"level": 4,
+				"cd": 10,
+				"desc": "Release a stream of extremely hot steam at an enemy",
+				"require": "g.fulmination>0&&g.waterlore>=7",
+				"buy": {
+					"research": 2000,
+					"firegem": 25,
+					"tomes": 25
+				},
+				"cost": {
+					"soulheat": 10,
+					"fire": 4
+				},
+				"attack": {
+					"kind": "water",
+					"dmg": "10~12"
+				},
+				"flavor": "hissssssssssssss"
+			},
+			{
+				"id": "air_heatdown",
+				"name": "searing wind",
+				"school": "air",
+				"level": 4,
+				"cd": 10,
+				"desc": "Buffet a foe with scorching gusts of wind",
+				"require": "g.fulmination>0&&g.airlore>=7",
+				"buy": {
+					"research": 2000,
+					"firegem": 25,
+					"tomes": 25
+				},
+				"cost": {
+					"soulheat": 10,
+					"fire": 4
+				},
+				"attack": {
+					"kind": "air",
+					"dmg": "10~12"
+				},
+				"flavor": "It's like a brief visit to hell"
+			},
+			{
+				"id": "earth_heatdown",
+				"name": "molten earth",
+				"school": "earth",
+				"level": 4,
+				"cd": 10,
+				"desc": "Melt the ground under your foe's feet",
+				"require": "g.fulmination>0&&g.earthlore>=7",
+				"buy": {
+					"research": 2000,
+					"firegem": 25,
+					"tomes": 25
+				},
+				"cost": {
+					"soulheat": 10,
+					"fire": 4
+				},
+				"attack": {
+					"kind": "earth",
+					"dmg": "10~12"
+				},
+				"flavor": "Better wear some thick-soled boots"
+			},
+			{
+				"id": "earth_heatdown",
+				"name": "molten earth",
+				"school": "earth",
+				"level": 4,
+				"cd": 10,
+				"desc": "Melt the ground under your foe's feet",
+				"require": "g.fulmination>0&&g.earthlore>=7",
+				"buy": {
+					"research": 2000,
+					"firegem": 25,
+					"tomes": 25
+				},
+				"cost": {
+					"soulheat": 10,
+					"fire": 4
+				},
+				"attack": {
+					"kind": "earth",
+					"dmg": "10~12"
+				},
+				"flavor": "Better wear some thick-soled boots"
+			},
+			{
+				"id": "soulember_up",
+				"name": "Inflame",
+				"school": "fire",
+				"level": 5,
+				"cd": 60,
+				"desc": "Explosively ignite a soul ember",
+				"require": "g.fulmination>0&&g.soulember.max>3",
+				"buy": {
+					"research": 5000,
+					"firegem": 25,
+					"firerune": 15,
+					"soulember": 4
+				},
+				"cost": {
+					"soulheat": 15,
+					"fire": 10
+				},
+				"result": {
+					"soulember": 1
+				},
+				"attack": {
+					"kind": "fire",
+					"dmg": "15~25"
+				}
+			},
+			{
+				"id": "soulember_down",
+				"name": "Soul blaze",
+				"school": "fire",
+				"level": 5,
+				"cd": 60,
+				"desc": "Expend a soul ember, enveloping the surroundings in released energies",
+				"require": "g.fulmination>0&&g.soulember.max>3",
+				"buy": {
+					"research": 5000,
+					"firegem": 25,
+					"firerune": 15,
+					"soulember": 4
+				},
+				"cost": {
+					"soulember": 1,
+					"fire": 5
+				},
+				"result": {
+					"blazingsoul": 15
+				},
+				"attack": {
+					"targets": "enemies",
+					"kind": "fire",
+					"dmg": "10~15"
+				}
+			},
+			{
+				"id": "searingflash",
+				"name": "flashfire",
+				"school": "fire",
+				"level": 1,
+				"desc": "Release a gem's worth of fire in an instant",
+				"require": "g.fulmination>0",
+				"buy": {
+					"research": 5000,
+					"firegem": 25,
+					"codices": 50
+				},
+				"cost": {
+					"firegem": 1
+				},
+				"result": {
+					"soulheat": 1,
+					"blazingsoul": 1
+				},
+				"attack": {
+					"kind": "fire",
+					"dmg": "5~10"
+				}
+			},
+			{
+				"id": "combust",
+				"name": "combustion",
+				"school": "fire",
+				"level": 5,
+				"cd": 10,
+				"desc": "Use a fire gem to stoke the fire within.",
+				"require": "(g.firebrand+g.firelord)>0",
+				"buy": {
+					"research": 5000,
+					"firegem": 25,
+					"codices": 50
+				},
+				"cost": {
+					"firegem": 1
+				},
+				"result": {
+					"soulheat": 50,
+					"blazingsoul": 25
+				}
+			}
+		],
+		"homes": [
+			{
+				"id": "volcano",
+				"name": "volcanic lair",
+				"desc": "Stark lair carved into a mountain of fire",
+				"require": "g.fire>=20||(g.firebrand+g.firelord)>0",
+				"cost": {
+					"research": 5500,
+					"gold": 5000,
+					"firegem": 25
+				},
+				"tags": "firesource",
+				"mod": {
+					"minions.max": 15,
+					"space.max": 300,
+					"fire.rate": 0.5,
+					"player.bonuses.fire": 1,
+					"lakeoffire.mod.space": -13,
+					"lakeoffire.max": 2,
+					"lakeoffire.mod.firegem.rate": 0.03
+				},
+				"lock": [
+					"latticewindow"
+				]
+			}
+		],
+		"furniture": [
+			{
+				"id": "lakeoffire",
+				"name": "lake of fire",
+				"desc": "A lake of burning fire.",
+				"tags": "firesource",
+				"max": 1,
+				"require": "(g.fire.max>=10&&g.space.max>=100)||g.volcano>0",
+				"cost": {
+					"fire": 10,
+					"gold": 100,
+					"firegem": 10,
+					"research": 200
+				},
+				"mod": {
+					"fire.max": 2,
+					"fire.rate": 0.02,
+					"firegem.rate": 0.01,
+					"space": 15
+				}
+			},
+			{
+				"id": "embercapacitor",
+				"name": "ember pedestal",
+				"desc": "Holds your soul embers safely.",
+				"max": 3,
+				"require": "g.flamesculpting>0",
+				"cost": {
+					"fire": 10,
+					"gold": 100,
+					"firegem": 10,
+					"soulember": 1
+				},
+				"mod": {
+					"soulember.max": 1,
+					"space": 30
+				}
+			},
+			{
+				"id": "heatcapacitor",
+				"name": "heat capacitor",
+				"desc": "A large tank of enchanted water, capable of transmitting heat to and from you instantly.",
+				"max": 5,
+				"require": "g.soulheat>50&&g.enchanting>=5",
+				"cost": {
+					"water": 15,
+					"gold": 4000,
+					"firegem": 25,
+					"watergem": 25,
+					"research": 2500
+				},
+				"mod": {
+					"soulheat.max": 10,
+					"blazingsoul.max": 25,
+					"space": 25
+				}
+			},
+			{
+				"id": "heatconductor",
+				"name": "heat conductor",
+				"desc": "A number of enchantments designed for cooling your heat capacitors.",
+				"max": 5,
+				"require": "g.heatcapacitor>0",
+				"cost": {
+					"air": 15,
+					"gold": 4000,
+					"watergem": 25,
+					"research": 2500
+				},
+				"mod": {
+					"heatcapacitor.mod.soulheat.rate": -0.2,
+					"heatcapacitor.mod.restingpoint.mod.blazingsoul.rate": -0.01,
+					"space": 15
+				},
+				"flavor": "Enchanted ice-makers, specially calculated airflow, barbeque sauce..."
+			}
+		],
+		"resources": [
+			{
+				"id": "soulember",
+				"name": "soul ember",
+				"desc": "The rising flames in your soul.",
+				"group": "pyromancy",
+				"max": 2,
+				"mod": {
+					"soulheat.rate": "0.1+10%",
+					"soulheat.max": "10",
+					"blazingsoul.max": "25",
+					"blazingsoul.effect.hp": -0.01,
+					"blazingsoul.mod.element.rate.": -0.002,
+					"blazingsoul.mod.fire.rate.": -0.002,
+					"fire.max": "5",
+					"soulheat.mod.player.bonuses.fire": 0.01,
+					"soulheat.mod.player.hits.fire": -0.005,
+					"soulheat.mod.fire.rate": 0.005,
+					"soulheat.mod.blazingsoul.rate": 0.002
+				},
+				"flavor": "Take care, lest it turns into a wildfire."
+			},
+			{
+				"id": "soulheat",
+				"name": "blazing heat",
+				"desc": "Your accumulated heat, ready to burn your enemies to cinders",
+				"tags": "specialty",
+				"rate": -0.5,
+				"max": 100,
+				"mod": {
+					"player.bonuses.fire": 0.01,
+					"player.hits.fire": -0.01,
+					"fire.rate": 0.01,
+					"conflagration.attack.dot.damage.min": 0.03,
+					"conflagration.attack.dot.damage.max": 0.06,
+					"searingradiance.attack.dot.damage.min": 0.02,
+					"searingradiance.attack.dot.damage.max": 0.04,
+					"blazingsoul.rate": 0.01
+				},
+				"flavor": "The sight of a pyromancer, red-hot with radiant energies, is quite a spectacle to behold"
+			},
+			{
+				"id": "blazingsoul",
+				"name": "consuming flames",
+				"desc": "Your lack of control resulted in the fire within breaking free.",
+				"tags": "menace",
+				"group": "adversities",
+				"max": 100,
+				"effect": {
+					"hp": -0.05
+				},
+				"mod": {
+					"hp.max": "-0.3%",
+					"player.hp": -0.0001,
+					"element.rate": -0.01,
+					"fire.rate": -0.01
+				},
+				"flavor": "By fire be purged!"
+			},
+			{
+				"id": "pureember",
+				"name": "pure ember",
+				"desc": "Crystallized soulflame, tempered with annihilating energies.",
+				"group": "pyromancy",
+				"max": 25,
+				"flavor": "Too precious to ever entrust to anyone."
+			}
+		],
+		"classes": [
+			{
+				"id": "pyromancer",
+				"desc": "Shaper of fire",
+				"tags": "t_tier2",
+				"require": "g.tier1>0&&g.firelore>=10",
+				"cost": {
+					"research": 1000,
+					"arcana": 15,
+					"tomes": 10,
+					"firegem": 10
+				},
+				"mod": {
+					"tier2": true,
+					"flamesculpting.max": 1,
+					"player.bonuses.fire": 1,
+					"player.hits.fire": 1,
+					"firelore2.max": 1
+				},
+				"flavor": "The flames within swell, yearning for release"
+			},
+			{
+				"id": "firebrand",
+				"desc": "Wielder of fire",
+				"tags": "t_tier4",
+				"require": "g.tier3>0&&g.firelore>=10",
+				"cost": {
+					"research": 4000,
+					"arcana": 25,
+					"tomes": 30,
+					"firegem": 50
+				},
+				"mod": {
+					"tier4": true,
+					"flamesculpting.max": 1,
+					"player.bonuses.fire": 1,
+					"player.hits.fire": 1,
+					"firelore2.max": 1
+				},
+				"flavor": "Burn away the taint on the world"
+			},
+			{
+				"id": "firelord",
+				"desc": "Ruler of fire",
+				"tags": "t_tier6",
+				"require": "g.tier5>0&&g.flamesculpting>=2&&(g.pyromancer+g.firebrand)>0",
+				"cost": {
+					"research": 10000,
+					"arcana": 50,
+					"tomes": 40,
+					"firegem": 100,
+					"firerune": 20,
+					"pureember": 20
+				},
+				"mod": {
+					"tier6": true,
+					"firelore.max": 2,
+					"flamesculpting.max": 1,
+					"firelore2.max": 2
+				},
+				"flavor": "Unquenchable flames, burning everbright for you"
+			}
+		],
+		"rares": [
+			{
+				"id": "ifritclaws",
+				"name": "efreet's claws",
+				"desc": "Made from frozen flames, their power raises and falls in tandem with their master's",
+				"type": "weapon",
+				"attack": {
+					"hits": [
+						{
+							"kind": "fire",
+							"damage": "1",
+							"tohit": -5
+						},
+						{
+							"kind": "fire",
+							"damage": "1",
+							"tohit": -5
+						},
+						{
+							"kind": "fire",
+							"damage": "1",
+							"tohit": -5
+						}
+					]
+				},
+				"alter": {
+					"mod": {
+						"fire.rate": 0.5,
+						"fire.max": 10,
+						"soulember.mod.soulheat.max": 2,
+						"soulember.mod.blazingsoul.max": 5,
+						"soulheat.mod.player.bonuses.fire": 0.015,
+						"soulheat.mod.fire.rate": 0.005,
+						"restingpoint.mod.blazingsoul.rate": -0.2
+					}
+				},
+				"hands": 2,
+				"tags": "t_artifact",
+				"level": 10,
+				"enchants": 10,
+				"unique": true,
+				"sell": {
+					"gold": 1000
+				}
+			},
+			{
+				"id": "charredchain",
+				"name": "charred chain",
+				"desc": "Covered in soot and partially melted, it's still holding strong after all this time",
+				"type": "armor",
+				"slot": "neck",
+				"alter": {
+					"mod": {
+						"self.resist.fire": 20
+					}
+				},
+				"tags": "t_artifact",
+				"unique": true,
+				"level": 1,
+				"armor": 2,
+				"enchants": 0,
+				"sell": {
+					"gold": 100
+				}
+			}
+		],
+		"dungeons": [
+			{
+				"id": "consumedshack",
+				"name": "fire-cursed shack",
+				"desc": "Rumors say that deep in the woods, there is a shack once inhabited by a wizard obsessed with fire. He has not been seen for years and terrible heat can be felt emanating from the place",
+				"level": 8,
+				"length": 1,
+				"require": "g.tier1>0&&g.firelore>=10",
+				"boss": {
+					"1": [
+						"consumedshade"
+					]
+				},
+				"run": {
+					"fire": 0.5
+				},
+				"log": {
+					"name": "Scattered notes",
+					"desc": "Half-burnt and fully enciphered, it would take someone well versed in arcane mysteries of fire to decipher their secrets."
+				},
+				"loot": {
+					"charredchain": 1
+				}
+			}
+		],
+		"monsters": [
+			{
+				"id": "consumedshade",
+				"name": "consumed shade",
+				"desc": "What must have once been a man, it has been consumed by flames from inside out",
+				"level": 8,
+				"noproc": true,
+				"kind": "consumed",
+				"tohit": 25,
+				"hp": 500,
+				"defense": 55,
+				"spells": "searingbolt_pyro,firedart_pyro,magmabolt_pyro",
+				"attack": {
+					"targets": "enemies",
+					"name": "consuming flame",
+					"kind": "fire",
+					"dmg": "8~25"
+				},
+				"immune": "fire"
+			}
+		]
+	}
+}

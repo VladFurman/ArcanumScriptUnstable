@@ -1,0 +1,51 @@
+{
+	"module": "experimental",
+	"author": "mathias",
+	"data": {
+		"events":[
+			{
+				"id":"renown",
+				"name":"Renowned",
+				"desc":"Your stories circle around for aspiring wizards to learn from",
+				"require":"g.spdump>=5",
+				"mod":{"spdump.result.prestige":1}
+			}
+		],
+        "resources":[
+        ],
+		"upgrades":[
+			{
+				"id":"spdump",
+				"name":"Share your expertise",
+				"desc":"Convert your excess skillpoints to prestige. Each purchase doubles the cost.",
+				"require":"g.wizardhall",
+				"cost": {
+					"sp": "Math.pow(2, +g.spdump)"
+				},
+				"repeat":true,
+				"max":10,
+				"result":{
+					"prestige":1
+				}
+			}
+		],
+		"furniture":[
+			{
+				"id":"goldportal",
+				"name":"gold portal",
+				"desc":"Interest on the gold, sent to forgotten times",
+				"repeat":true,
+				"require":"g.gate>0",
+				"cost":{
+					"tempus":5,
+					"gate":1,
+					"gold":1000
+				},
+				"mod":{
+					"space":50,
+					"gold.rate":1
+				}
+			}
+		]
+    }
+}
