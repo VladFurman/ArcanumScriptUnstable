@@ -1,6 +1,6 @@
 # Arcanum Userscript
 
-Tempermonkey / Greasemonkey userscript for the idle game Arcanum (Theory of Magic on Kongregate)
+Tempermonkey / Greasemonkey userscript for the idle game [Arcanum, experimental version](https://arcanumtesting.gitlab.io/arcanum/).
 
 The main focus of this set of scripts is minor covenience features. It is not meant as a full automation.
 
