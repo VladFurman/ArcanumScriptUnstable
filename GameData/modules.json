@@ -1,5 +1,6 @@
 {
 	"core": [
+		"tags",
 		"resources",
 		"upgrades",
 		"tasks",
@@ -24,7 +25,8 @@
 		"stressors",
 		"rares",
 		"reagents",
-		"properties"
+		"properties",
+		"hall"
 	],
 	"modules": [
 		"patrons",
@@ -34,6 +36,13 @@
 		"sackmakers",
 		"ritualist",
 		"extramats",
-		"extraaction"
+		"extraaction",
+		"debug",
+		"legacy",
+		"timerip",
+		"pyromancer",
+		"experimental",
+		"numismatika",
+		"halloween"
 	]
 }

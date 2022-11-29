@@ -4,6 +4,7 @@
 		"name": "clean stables",
 		"desc": "Working from home.",
 		"verb": "cleaning",
+		"fill": "gold",
 		"locked": false,
 		"cost": {
 			"stamina": 0.08
@@ -12,6 +13,28 @@
 			"gold": 0.2
 		},
 		"flavor": "It's stable employment"
+	},
+	{
+		"id": "smith_work",
+		"name": "Smith",
+		"desc": "Smithing equipment for enchanting",
+		"require": "g.job_smith>0||g.crafting>12",
+		"verb": "Smithing",
+		"length": 15,
+		"at": {
+			"20": {
+				"run.stamina": -0.1
+			},
+			"50": {
+				"run.stamina": -0.1
+			}
+		},
+		"run": {
+			"stamina": 0.4
+		},
+		"result": {
+			"gold": 5
+		}
 	},
 	{
 		"id": "chores",
@@ -144,6 +167,7 @@
 		"actname": "bind spellbook",
 		"verb": "binding spells",
 		"require": "g.lore>=2&&g.crafting>=2&&g.languages>=1",
+		"craftable": true,
 		"desc": "The portal to true magic.",
 		"length": 50,
 		"max": 1,
@@ -168,6 +192,80 @@
 			"research.max": 25,
 			"research.rate": 0.07,
 			"arcana.rate": 0.0001
+		}
+	},
+	{
+		"id": "tools_1",
+		"actname": "basic tools",
+		"verb": "Creating Tools",
+		"require": "g.crafting>=10&&g.job_smith>0",
+		"craftable": true,
+		"desc": "Improving your tools",
+		"length": 20,
+		"max": 1,
+		"cost": {
+			"gold": 50
+		},
+		"log": {
+			"name": "Tools Completed",
+			"desc": "Your new and improved tools should make your work a lot more efficient"
+		},
+		"run": {
+			"stamina": 0.4
+		},
+		"mod": {
+			"smith_work.length": -3
+		}
+	},
+	{
+		"id": "tools_2",
+		"actname": "Advanced Tools",
+		"verb": "Creating Tools",
+		"require": "g.crafting>=15&&g.tools_1>0",
+		"craftable": true,
+		"desc": "Improving your tools",
+		"length": 50,
+		"max": 1,
+		"cost": {
+			"gold": 250,
+			"gems": 10,
+			"firegem": 5
+		},
+		"log": {
+			"name": "Tools Completed",
+			"desc": "Your new and improved tools should make your work a lot more efficient"
+		},
+		"run": {
+			"stamina": 0.7
+		},
+		"mod": {
+			"smith_work.length": -2
+		}
+	},
+	{
+		"id": "tools_3",
+		"actname": "Expert Tools",
+		"verb": "Creating Tools",
+		"require": "g.crafting>=20&&g.tools_2>0",
+		"craftable": true,
+		"desc": "Improving your tools",
+		"length": 250,
+		"max": 1,
+		"cost": {
+			"gold": 250,
+			"gems": 10,
+			"runestones": 10,
+			"firerune": 5
+		},
+		"log": {
+			"name": "Tools Completed",
+			"desc": "Your new and improved tools should make your work a lot more efficient"
+		},
+		"run": {
+			"stamina": 0.7
+		},
+		"mod": {
+			"smith_work.length": -2
 		}
 	},
 	{
@@ -449,6 +547,7 @@
 		"id": "starwish",
 		"desc": "Turn sindels into dreams.",
 		"require": "g.astrallore>=5&&g.divination>=10&&g.dreams>0",
+		"fill": "dreams",
 		"cost": {
 			"arcana": 1,
 			"sindel": 1
@@ -463,7 +562,7 @@
 		"name": "spin gold",
 		"desc": "Spin straw into gold",
 		"verb": "spinning",
-		"need": "(g.spinwheel+g.loom)>0",
+		"need": "weavesource",
 		"require": "g.weaving>=5&&g.loom>0&&g.enchanting>=3",
 		"perpetual": true,
 		"length": 10,
@@ -494,13 +593,20 @@
 		"name": "blood siphon",
 		"desc": "Leech blood from a body to restore your health",
 		"require": "transfusions",
-		"length": 10,
-		"fill": "hp",
-		"cost": {
-			"bodies": 0.5
+		"perpetual":true,
+		"at":{
+			"900":{
+				"effect.hp":2
+			},
+			"3600":{
+				"effect.hp":3
+			}
+		},
+		"run": {
+			"bodies": 0.1
 		},
 		"effect": {
-			"hp": 40
+			"hp": 5
 		}
 	},
 	{
@@ -602,6 +708,23 @@
 		},
 		"result": {
 			"bonedust": "2~4"
+		}
+	},
+	{
+		"id": "grindskull",
+		"name": "powderize skull",
+		"desc": "Grind a skull into dust",
+		"require": "g.dissection>=4",
+		"length": 12,
+		"fill": "bonedust",
+		"cost": {
+			"skulls": 1
+		},
+		"run": {
+			"stamina": 0.4
+		},
+		"result": {
+			"bonedust": "6~8"
 		}
 	},
 	{
@@ -1250,6 +1373,7 @@
 		"name": "bag of demons",
 		"actname": "craft bag of demons",
 		"require": "g.demonology>=10&&g.crafting>20&&g.tier3>0",
+		"craftable": true,
 		"max": 1,
 		"length": 2000,
 		"desc": "You'll make your own bags, thank you.",
@@ -1265,7 +1389,7 @@
 		},
 		"mod": {
 			"bones.max": 10,
-			"bloodgems.max": 10,
+			"bloodgem.max": 10,
 			"voidgem.max": 1,
 			"spiritgem.max": 2,
 			"shadowgem.max": 1
@@ -1277,6 +1401,7 @@
 		"name": "bag of mayhem",
 		"actname": "craft bag of mayhem",
 		"require": "g.trickster>0&&g.crafting>20&&g.tier3>0&&g.chaosgem>=3",
+		"craftable": true,
 		"max": 1,
 		"length": 2000,
 		"desc": "Badger, badger, badger, badger, why are there so many badgers in there???",
@@ -1373,6 +1498,7 @@
 		"actname": "compile bestiary",
 		"verb": "researching beasts",
 		"require": "g.animals>=3",
+		"craftable": true,
 		"length": 75,
 		"desc": "Compendium of common creatures",
 		"max": 1,
@@ -1396,6 +1522,7 @@
 		"name": "arcane bestiary",
 		"desc": "Compendium of magic creatures.",
 		"require": "g.loc_menagerie>0",
+		"craftable": true,
 		"max": 1,
 		"length": 500,
 		"cost": {
@@ -1438,6 +1565,7 @@
 		"id": "codexannih",
 		"name": "codex annihilus",
 		"require": "(g.darkmagician+g.dreadlord)>0",
+		"craftable": true,
 		"desc": "Karnivex's manual of destruction",
 		"length": 75,
 		"max": 1,
@@ -1458,6 +1586,7 @@
 	{
 		"id": "markhulcodex",
 		"name": "markhul's codex",
+		"craftable": true,
 		"desc": "A dusty codex from the genezereth library.",
 		"max": 1,
 		"length": 75,
@@ -1478,6 +1607,7 @@
 		"id": "sylvansyllabary",
 		"name": "sylvan syllabary",
 		"require": "g.languages>=5&&g.tier0>0",
+		"craftable": true,
 		"desc": "A book of elvish symbols",
 		"length": 75,
 		"max": 1,
@@ -1499,6 +1629,7 @@
 		"id": "dwarfbook",
 		"name": "dwarven dirges",
 		"require": "g.languages>=5&&g.tier0>0",
+		"craftable": true,
 		"desc": "A compilation of gloomy dwarven drinking songs",
 		"length": 75,
 		"max": 1,
@@ -1521,6 +1652,7 @@
 		"id": "lemurlexicon",
 		"name": "lemurian lexicon",
 		"require": "g.languages>=7&&g.spiritlore>=6&&g.tier0>0",
+		"craftable": true,
 		"desc": "Interpret the strange whisperings of spirits",
 		"length": 50,
 		"max": 1,
@@ -1542,6 +1674,7 @@
 		"id": "demondict",
 		"name": "demonic dictionary",
 		"require": "g.languages>=10&&g.demonology>0&&g.tier1>0",
+		"craftable": true,
 		"desc": "A compiliation of obscure demonic languages",
 		"length": 75,
 		"max": 1,
@@ -1564,6 +1697,7 @@
 		"id": "arazorannals",
 		"name": "annals of arazor",
 		"require": "aragwastes",
+		"craftable": true,
 		"desc": "A history of the eastern region of Arazor.",
 		"tags": "book",
 		"max": 1,
@@ -1583,6 +1717,7 @@
 		"id": "orremannals",
 		"name": "annals of orrem",
 		"require": "loc_orrem",
+		"craftable": true,
 		"desc": "A history of the lost cities of Orrem.",
 		"tags": "book",
 		"max": 1,
@@ -1603,6 +1738,7 @@
 		"name": "malleus maleficarum",
 		"actname": "compile witchhammer",
 		"require": "g.crafting>=15&&g.lightlore>=15",
+		"craftable": true,
 		"desc": "A manual against the darkness.",
 		"length": 50,
 		"max": 1,
@@ -1664,11 +1800,13 @@
 		"desc": "You forged it once, call forth another.",
 		"verb": "Recalling",
 		"require": "g.maketitanhammer>0",
+		"craftable": true,
 		"length": 10,
 		"cost": {
 			"earthgem": 30,
 			"earthrune": 10,
-			"sindel": 1
+			"sindel": 1,
+			"deepsteel": 1
 		},
 		"run": {
 			"stamina": 8,
@@ -1684,13 +1822,15 @@
 		"desc": "The powers of creation and destruction, locked in your grip.",
 		"max": 1,
 		"verb": "Creating Masterpiece",
-		"require": "g.titan>0&&g.mythicanvil>0",
+		"require": "g.titan>0&&g.mythicanvil>0&&g.deepsteel>=1",
+		"craftable": true,
 		"length": 180,
 		"cost": {
 			"earthgem": 300,
 			"earthrune": 80,
 			"sindel": 5,
-			"ichor": 5
+			"ichor": 5,
+			"deepsteel": 15
 		},
 		"run": {
 			"stamina": 4,
@@ -1705,6 +1845,7 @@
 		"name": "fazbit's fixations",
 		"desc": "Scribe a copy of the seminal text in practical alchemy",
 		"length": 50,
+		"craftable": true,
 		"max": 1,
 		"cost": {
 			"codices": 25
@@ -1727,6 +1868,7 @@
 		"id": "coporisfabrica",
 		"name": "coporis fabrica",
 		"require": "g.player.level>=8&&g.anatomy>=5",
+		"craftable": true,
 		"desc": "A manual of the human body",
 		"tags": "book",
 		"length": 40,
@@ -1747,6 +1889,7 @@
 		"id": "unendingscroll",
 		"name": "unending scroll",
 		"require": "g.languages>=7",
+		"craftable": true,
 		"desc": "Some scrolls feel interminable.",
 		"length": 50,
 		"max": 1,
@@ -1767,6 +1910,7 @@
 		"id": "unendingcodex",
 		"name": "unending codex",
 		"require": "g.unendingscroll>0&&g.tier1>0",
+		"craftable": true,
 		"desc": "Some books never seem to end.",
 		"length": 100,
 		"max": 1,
@@ -1788,6 +1932,7 @@
 		"id": "unendingtome",
 		"name": "unending tome",
 		"require": "g.tier2>0&&g.unendingcodex>0",
+		"craftable": true,
 		"desc": "Some tomes are never finished.",
 		"length": 200,
 		"max": 1,
@@ -1810,6 +1955,7 @@
 		"desc": "Compile a manual of the sun and stars",
 		"actname": "almagest",
 		"require": "g.astronomy>=7&&g.tier1>0",
+		"craftable": true,
 		"max": 1,
 		"length": 50,
 		"cost": {
@@ -2134,6 +2280,7 @@
 		"actname": "craft phylactory",
 		"desc": "Rip out of a piece of your soul and store it in a magic gem.",
 		"require": "g.crafting>=20&&g.necromancy>=8",
+		"craftable": true,
 		"length": 50,
 		"max": 1,
 		"cost": {

@@ -479,34 +479,6 @@
 		}
 	},
 	{
-		"id": "volcano",
-		"name": "volcanic lair",
-		"desc": "Stark lair carved into a mountain of fire",
-		"require": "g.fire>=20",
-		"cost": {
-			"research": 500,
-			"gold": 3000,
-			"firegem": 2
-		},
-		"tags": "firesource",
-		"mod": {
-			"minions.max": 20,
-			"space.max": 200,
-			"research.rate": -0.5,
-			"fire.max": 4,
-			"fire.rate": 0.2,
-			"firelore.max": 2,
-			"firelore.rate": 0.2,
-			"earthlore.max": 3,
-			"earthlore.rate": 0.2,
-			"water.max": "-15%",
-			"water.rate": -2
-		},
-		"lock": [
-			"latticewindow"
-		]
-	},
-	{
 		"id": "cavern",
 		"desc": "A wide and yawning cavern, deep beneath the earth",
 		"require": "g.tier2>0&&g.earthlore>=10",

@@ -286,7 +286,7 @@
 			"dot": {
 				"duration": 60,
 				"mod": {
-					"speed": -20
+					"self.speed": -20
 				}
 			}
 		}
@@ -307,18 +307,17 @@
 		},
 		"at": {
 			"25": {
-				"attack.damage.max": 5
+				"attack.dot.damage.max": 5
 			},
 			"75": {
-				"attack.damage.min": 5
+				"attack.dot.damage.min": 5
 			},
 			"300": {
-				"attack.damage.max": 5,
-				"attack.damage.min": 5
+				"attack.dot.damage.max": 5,
+				"attack.dot.damage.min": 5
 			}
 		},
 		"attack": {
-			"damage": "0~5",
 			"dot": {
 				"kind": "drain",
 				"leech": 0.75,
@@ -389,7 +388,7 @@
 			"name": "whirling step",
 			"duration": 45,
 			"mod": {
-				"dodge": 1
+				"self.dodge": 1
 			}
 		}
 	},
@@ -412,8 +411,10 @@
 			"name": "whirling step",
 			"duration": 60,
 			"mod": {
-				"dodge": 2,
-				"speed": 0.3
+				"self": {
+					"dodge": 2,
+					"speed": 0.3
+				}
 			}
 		}
 	},
@@ -435,8 +436,10 @@
 			"name": "whirling step",
 			"duration": 80,
 			"mod": {
-				"dodge": 5,
-				"speed": 0.55
+				"self": {
+					"dodge": 5,
+					"speed": 0.55
+				}
 			}
 		}
 	},
@@ -705,7 +708,7 @@
 			"dot": {
 				"duration": 20,
 				"mod": {
-					"speed": -0.2
+					"self.speed": -0.2
 				}
 			}
 		}
@@ -741,110 +744,6 @@
 			"shadow": 7
 		},
 		"result": "zombie"
-	},
-	{
-		"id": "firedart",
-		"name": "fire dart",
-		"level": 1,
-		"require": "g.spellbook.value>0&&g.firelore>0",
-		"school": "fire",
-		"buy": {
-			"research": 25,
-			"scrolls": 1
-		},
-		"at": {
-			"25": {
-				"attack.damage.max": 1.5
-			},
-			"75": {
-				"attack.damage.min": 1.5
-			},
-			"300": {
-				"attack.damage.max": 2,
-				"attack.damage.min": 1,
-				"attack.tohit": 2
-			}
-		},
-		"cost": {
-			"fire": 1
-		},
-		"attack": {
-			"damage": "3~5",
-			"kind": "fire",
-			"tohit": 1
-		}
-	},
-	{
-		"id": "firebolt",
-		"name": "fire bolt",
-		"level": 2,
-		"desc": "A small bolt of flame.",
-		"require": "g.firedart>0&&g.firelore>=5",
-		"school": "fire",
-		"buy": {
-			"research": 30,
-			"scrolls": 5,
-			"firegem": 1
-		},
-		"at": {
-			"25": {
-				"attack.damage.max": 2
-			},
-			"75": {
-				"attack.damage.min": 2
-			},
-			"300": {
-				"attack.damage.max": 2,
-				"attack.damage.min": 2,
-				"attack.tohit": 3
-			}
-		},
-		"cost": {
-			"fire": 4
-		},
-		"attack": {
-			"damage": "4~5",
-			"tohit": 3,
-			"kind": "fire"
-		}
-	},
-	{
-		"id": "searingbolt",
-		"name": "searing bolt",
-		"level": 3,
-		"desc": "A bolt of fire with lingering flames",
-		"school": "fire",
-		"require": "g.firebolt>0&&g.firelore>=8&&g.tier1>0",
-		"buy": {
-			"research": 100,
-			"codices": 10,
-			"firegem": 3
-		},
-		"cost": {
-			"fire": 5
-		},
-		"at": {
-			"30": {
-				"attack.damage.max": 3
-			},
-			"100": {
-				"attack.damage.min": 3
-			},
-			"300": {
-				"attack.damage.max": 4,
-				"attack.damage.min": 3,
-				"attack.tohit": 5
-			}
-		},
-		"attack": {
-			"damage": "7~10",
-			"tohit": 5,
-			"kind": "fire",
-			"dot": {
-				"dmg": "2~3",
-				"duration": 10
-			}
-		}
 	},
 	{
 		"id": "lightspear",
@@ -915,44 +814,6 @@
 			"damage": "21~29",
 			"tohit": 8,
 			"kind": "light"
-		}
-	},
-	{
-		"id": "magmabolt",
-		"name": "magma bolt",
-		"level": 5,
-		"desc": "A bolt of liquid-hot magma",
-		"school": "fire",
-		"require": "g.searingbolt>0&&g.firelore>=12&&g.tier3>0",
-		"buy": {
-			"research": 100,
-			"tomes": 1,
-			"firegem": 10
-		},
-		"cost": {
-			"fire": 7
-		},
-		"at": {
-			"50": {
-				"attack.damage.max": 4
-			},
-			"150": {
-				"attack.damage.min": 4
-			},
-			"500": {
-				"attack.damage.max": 5,
-				"attack.damage.min": 4,
-				"attack.tohit": 7
-			}
-		},
-		"attack": {
-			"damage": "15~20",
-			"tohit": 7,
-			"kind": "fire",
-			"dot": {
-				"dmg": "5~7",
-				"duration": 20
-			}
 		}
 	},
 	{
@@ -1268,27 +1129,6 @@
 		}
 	},
 	{
-		"id": "flamestrike",
-		"school": "fire",
-		"desc": "Imbue your weapon with flame before striking.",
-		"level": 4,
-		"require": "g.bladelore>=4&&g.firelore>=8",
-		"buy": {
-			"tomes": 5,
-			"firegem": 10
-		},
-		"cost": {
-			"fire": 3,
-			"hp": 10,
-			"stamina": 1
-		},
-		"attack": {
-			"kind": "fire",
-			"bonus": 5,
-			"dmg": "(a.weapon.damage+a.getBonus( a.weapon.kind ))*2"
-		}
-	},
-	{
 		"id": "mk_blade",
 		"name": "summon blade",
 		"school": "blade",
@@ -1347,22 +1187,23 @@
 		"result": "unicorn"
 	},
 	{
-		"id": "tosand",
-		"name": "to sand",
-		"desc": "Transform your body into fine-grained sand.",
+		"id": "deepshell",
+		"name": "core steel shell",
+		"desc": "Cover yourself in a shell made of core steel.",
 		"school": "earth",
 		"require": "g.titan>0&&g.geosculpting>11",
 		"level": 15,
 		"buy": {
 			"research": 8000,
 			"tomes": 25,
-			"earthrune": 25
+			"earthrune": 25,
+			"deepsteel": 1
 		},
 		"cost": {
-			"earth": 15
+			"deepsteel": 1
 		},
 		"dot": {
-			"duration": 10,
+			"duration": 600,
 			"mod": {
 				"self.defense": 200
 			}
@@ -1389,7 +1230,7 @@
 				"duration": 15,
 				"dmg": "15~25",
 				"mod": {
-					"speed": -12
+					"self.speed": -12
 				}
 			}
 		}
@@ -1410,7 +1251,8 @@
 		},
 		"cost": {
 			"earth": 25,
-			"sindel": 2
+			"sindel": 2,
+			"deepsteel": 1
 		},
 		"attack": {
 			"targets": "enemies",
@@ -1418,7 +1260,7 @@
 				"duration": 30,
 				"dmg": "50~75",
 				"mod": {
-					"speed": -25
+					"self.speed": -25
 				}
 			}
 		}
@@ -1437,7 +1279,7 @@
 			"stamina": 1
 		},
 		"attack": {
-			"damage": "(a.weapon.damage+a.getBonus( a.weapon.kind ))*2.5",
+			"damage": "((a.weapon.damage||0)+a.getBonus( a.weapon.kind ))*1.3",
 			"tohit": 3,
 			"kind": "earth"
 		}
@@ -1457,7 +1299,7 @@
 			"stamina": 12
 		},
 		"attack": {
-			"damage": "(a.weapon.damage+a.getBonus( a.weapon.kind ))*6",
+			"damage": "((a.weapon.damage||0)+a.getBonus( a.weapon.kind ))*6",
 			"tohit": 5,
 			"kind": "earth",
 			"dot": {
@@ -1587,7 +1429,7 @@
 			"light": 5
 		},
 		"result": {
-			"self.hp": 20
+			"hp": 20
 		}
 	},
 	{
@@ -1668,6 +1510,33 @@
 			"mod": {
 				"lore.rate": 0.5,
 				"firelore.rate": "0.2+2%"
+			}
+		}
+	},
+	{
+		"id": "earthinsight",
+		"name": "earth sense",
+		"desc": "Temporarily increase your natural aptitude for earth.",
+		"level": 2,
+		"school": "earth",
+		"require": "g.earthlore>=1",
+		"buy": {
+			"research": 100,
+			"codices": 1,
+			"earthgem": 1
+		},
+		"cost": {
+			"earth": 2
+		},
+		"mod": {
+			"lore.rate": "0.005",
+			"earthlore.rate": "0.01"
+		},
+		"dot": {
+			"duration": 60,
+			"mod": {
+				"lore.rate": 0.5,
+				"earthlore.rate": "0.2+2%"
 			}
 		}
 	},
@@ -1899,7 +1768,7 @@
 				"id": "jinx",
 				"kind": "curse",
 				"mod": {
-					"tohit": -5
+					"self.tohit": -5
 				},
 				"duration": 20
 			}
@@ -1925,7 +1794,7 @@
 			"name": "dust devil",
 			"duration": 20,
 			"mod": {
-				"speed": 1
+				"self.speed": 1
 			}
 		}
 	},
@@ -1949,7 +1818,7 @@
 			"name": "dust devil",
 			"duration": 45,
 			"mod": {
-				"speed": 2
+				"self.speed": 2
 			}
 		}
 	},
@@ -1974,7 +1843,7 @@
 				"kind": "curse",
 				"duration": 30,
 				"mod": {
-					"tohit": -10
+					"self.tohit": -10
 				}
 			}
 		}
@@ -2135,7 +2004,7 @@
 				"name": "blind",
 				"duration": 5,
 				"mod": {
-					"tohit": -3
+					"self.tohit": -3
 				}
 			}
 		}
@@ -2177,7 +2046,7 @@
 				"name": "blind",
 				"duration": 5,
 				"mod": {
-					"tohit": -4
+					"self.tohit": -4
 				}
 			}
 		}
@@ -2219,7 +2088,7 @@
 				"duration": 1,
 				"damage": "7~15",
 				"mod": {
-					"tohit": -7
+					"self.tohit": -7
 				}
 			}
 		}
@@ -2241,15 +2110,15 @@
 		},
 		"at": {
 			"30": {
-				"attack.dot.dmg.max": 5
+				"attack.dot.damage.max": 5
 			},
 			"100": {
-				"attack.dot.dmg.min": 5,
-				"attack.dot.dmg.max": 1
+				"attack.dot.damage.min": 5,
+				"attack.dot.damage.max": 1
 			},
 			"300": {
-				"attack.dot.dmg.max": 5,
-				"attack.dot.dmg.min": 4,
+				"attack.dot.damage.max": 5,
+				"attack.dot.damage.min": 4,
 				"attack.tohit": 5
 			}
 		},
@@ -2261,7 +2130,7 @@
 				"duration": 15,
 				"damage": "7~25",
 				"mod": {
-					"tohit": -5
+					"self.tohit": -5
 				}
 			}
 		}
@@ -2287,7 +2156,7 @@
 		},
 		"dot": {
 			"duration": 45,
-			"mod": {
+			"effect": {
 				"bf": -0.2,
 				"rage": -0.2,
 				"madness": -0.2
@@ -2313,10 +2182,14 @@
 		"dot": {
 			"duration": 60,
 			"mod": {
-				"hp.max": 75,
-				"hp.rate": -1,
-				"self.tohit": 10,
-				"self.damage": 10
+				"self": {
+					"hp": {
+						"max": 75,
+						"rate": -1
+					},
+					"tohit": 10,
+					"damage": 10
+				}
 			}
 		},
 		"result": {
@@ -2343,10 +2216,14 @@
 		"dot": {
 			"duration": 60,
 			"mod": {
-				"hp.max": 200,
-				"hp.rate": -3,
-				"self.tohit": 20,
-				"self.damage": 20
+				"self": {
+					"hp": {
+						"max": 200,
+						"rate": -3
+					},
+					"tohit": 20,
+					"damage": 20
+				}
 			}
 		},
 		"result": {
@@ -2615,15 +2492,18 @@
 		"cost": {
 			"earth": 5
 		},
-		"at": {
-			"30": {
-				"attack.tohit": 1
+		"at":{
+			"30":{
+				"attack.tohit":1
 			},
-			"100": {
-				"attack.tohit": 2
+			"100":{
+				"attack.dot.damage.max":1,
+				"attack.tohit":2
 			},
-			"300": {
-				"attack.tohit": 2
+			"300":{
+				"attack.dot.damage.max":2,
+				"attack.dot.damage.min":1,
+				"attack.tohit":2
 			}
 		},
 		"attack": {
@@ -2634,7 +2514,7 @@
 				"dmg": "2~3",
 				"duration": 3,
 				"mod": {
-					"speed": -10
+					"self.speed": -10
 				}
 			}
 		}
@@ -2662,7 +2542,7 @@
 				"duration": 30,
 				"dmg": "5~12",
 				"mod": {
-					"speed": -7
+					"self.speed": -7
 				}
 			}
 		}
@@ -2749,10 +2629,12 @@
 		"dot": {
 			"duration": 60,
 			"mod": {
-				"self.tohit": 5,
-				"hp.max": 50,
-				"defense": 10,
-				"speed": 2
+				"self": {
+					"tohit": 5,
+					"hp.max": 50,
+					"defense": 10,
+					"speed": 2
+				}
 			}
 		}
 	},
@@ -2799,7 +2681,7 @@
 				"kind": "light",
 				"duration": 60,
 				"mod": {
-					"tohit": -30
+					"self.tohit": -30
 				}
 			}
 		}
@@ -2827,7 +2709,7 @@
 			}
 		}
 	},
-	{
+{
 		"id": "hightide",
 		"name": "high tide",
 		"school": "water",
@@ -2849,8 +2731,12 @@
 					"targets": "all",
 					"dot": {
 						"kind": "water",
-						"dmg": "20~30",
-						"duration": 30
+						"dmg": "3~7",
+						"duration": 30,
+						"mod": {
+							"speed": -5,
+							"dodge": -10
+						}
 					}
 				},
 				{
@@ -2949,46 +2835,6 @@
 			]
 		},
 		"flavor": "Force without form"
-	},
-	{
-		"id": "firestorm",
-		"school": "fire",
-		"level": 17,
-		"desc": "Rain hell from above",
-		"cd": 66,
-		"require": "g.firelore>=18&&g.tier4>0",
-		"buy": {
-			"research": 4000,
-			"firegem": 25,
-			"tomes": 20
-		},
-		"cost": {
-			"fire": 8
-		},
-		"attack": {
-			"hits": [
-				{
-					"targets": "all",
-					"dot": {
-						"kind": "fire",
-						"dmg": "30~50",
-						"duration": 30
-					}
-				},
-				{
-					"id": "firestormprotection",
-					"name": "firestorm protection",
-					"targets": "allies",
-					"dot": {
-						"duration": 30,
-						"mod": {
-							"self.resist.fire": 80
-						}
-					}
-				}
-			]
-		},
-		"flavor": ""
 	},
 	{
 		"id": "immunefire2",

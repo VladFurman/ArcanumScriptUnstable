@@ -704,7 +704,7 @@
 			"runestones.rate": 0.005,
 			"codices.mod.research.rate": 0.03,
 			"tomes.mod.research.max": 1,
-			"runestones.mod.research.max": "20%",
+			"runestones.mod.research.max": "0.2%",
 			"potions.max": 2,
 			"lore.max": 5,
 			"lore.rate": "500%",
@@ -789,12 +789,41 @@
 		}
 	},
 	{
+		"id":"bettersiphon",
+		"name":"better siphon",
+		"desc":"allows you to extract life from corpses more efficiently",
+		"require":"g.thanophage>0",
+		"cost":{
+			"bloodgem":50,
+			"research":1000,
+			"bodies":10
+		},
+		"mod":{
+			"bloodsiphon.effect.hp":10
+		}
+	},
+	{
+		"id":"improvedvats",
+		"name":"improved vats",
+		"desc":"make your vats more effcients",
+		"require":"g.necromancer>0||g.greynecromancer>0||g.necro3>0",
+		"cost":{
+			"bloodgem":20,
+			"bodies":10,
+			"vat":5
+		},
+		"mod":{
+			"vat.mod.bodies.rate":0.01
+		}
+	},
+	{
 		"id": "transfusions",
 		"desc": "Learn to perform life-force transfusions",
 		"require": "g.anatomy>=5&&g.tier0>0",
 		"cost": {
 			"research": 100,
-			"arcana": 1
+			"arcana": 1,
+			"bloodgem":20
 		}
 	},
 	{
@@ -807,9 +836,9 @@
 			"arcana": 1
 		},
 		"mod": {
-			"bloodsiphon.effect.manas": 1,
-			"bloodsiphon.effect.shadow": 1,
-			"bloodsiphon.effect.spirit": 1
+			"bloodsiphon.effect.manas": 0.5,
+			"bloodsiphon.effect.shadow": 1.5,
+			"bloodsiphon.effect.spirit": 2
 		}
 	},
 	{
@@ -936,34 +965,30 @@
 	},
 	{
 		"id": "gemcraft",
+		"name": "sustained imbuement",
 		"require": "g.tier4>0&&g.crafting>=16",
-		"warn": true,
 		"cost": {
 			"research": 7500,
 			"tomes": 10,
 			"arcana": 15,
 			"sp": 5
 		},
-		"desc": "Allow you to imbue gems continuously as an activity.",
-		"mod": {
-			"gemimbue.perpetual": true,
-			"gemimbue.length": 5
-		}
+		"desc": "Unlocks an ability to imbue gems as a continuous action."
 	},
 	{
 		"id": "advgems",
-		"name": "advanced gemcraft",
-		"require": "g.gemcraft>0&&g.crafting>=18",
+		"name": "advanced imbuement chambers",
+		"require": "g.furn_gemcraft>0&&g.crafting>=18",
 		"warn": true,
 		"cost": {
 			"research": 10000,
 			"tomes": 10,
 			"arcana": 15,
-			"sp": 10
+			"sp": 15
 		},
 		"desc": "Improve the speed of your gem enchanting.",
 		"mod": {
-			"gemimbue.length": "-75%"
+			"furn_gemcraft.mod.gemimbue.length": "-3"
 		}
 	},
 	{
@@ -1349,6 +1374,21 @@
 		}
 	},
 	{
+		"id": "glassware",
+		"desc": "Glassware for keeping herbs or powders.",
+		"require": "g.crafting>=7&&g.bonedust>=10",
+		"max": 5,
+		"cost": {
+			"gold": 750,
+			"research": 300
+		},
+		"flavor": "Fine set of glassware with matching lids.",
+		"mod": {
+			"bonedust.max": 5,
+			"herbs.max": 2
+		}
+	},
+	{
 		"id": "ball",
 		"name": "crystal ball",
 		"tags": "spiritsource",
@@ -1634,6 +1674,62 @@
 		"flavor": "I knew him well"
 	},
 	{
+		"id": "model_skeleton",
+		"name": "model skeleton",
+		"require": "g.anatomy>=4",
+		"desc": "Bones and string making a complex skeleton of a human.",
+		"max": 1,
+		"cost": {
+			"skulls": 1,
+			"bones": 10,
+			"research": 800
+		},
+		"mod": {
+			"embalming.max": 1,
+			"dissection.max": 1
+		},
+		"flavor": "If only they had a body."
+	},
+	{
+		"id": "model_skeleton_body",
+		"name": "model body",
+		"require": "g.anatomy>=5&&g.model_skeleton>0&&g.vivification>=3",
+		"desc": "Muscles, sinew and all the red and white bits needed to show how a body looks under the surface.",
+		"max": 1,
+		"cost": {
+			"skulls": 1,
+			"bones": 10,
+			"research": 3000,
+			"hp": 50,
+			"bloodgem": 15,
+			"bodies": 3
+		},
+		"mod": {
+			"embalming.max": 1,
+			"dissection.max": 1,
+			"vivification.max": 1,
+			"skulls.mod.research.max": 2
+		}
+	},
+	{
+		"id": "model_animals",
+		"name": "taxidermy animals",
+		"require": "g.anatomy>=2&&g.embalming>0&&g.animals>=3",
+		"desc": "Small animals stuffed, embalmed and ready for study or display.",
+		"max": 5,
+		"cost": {
+			"skulls": 1,
+			"bones": 5,
+			"research": 3000,
+			"herbs": 15
+		},
+		"mod": {
+			"embalming.max": 1,
+			"dissection.max": 0.2,
+			"research.max": 15
+		}
+	},
+	{
 		"id": "voidtouch",
 		"name": "touching the void",
 		"require": "g.voidlore>=7",
@@ -1674,7 +1770,7 @@
 		},
 		"mod": {
 			"dreams.rate": 0.0001,
-			"runner.max": 1
+			"bed.mod.runner.max": 1
 		},
 		"flavor": "Every second of the night I live another life."
 	},
@@ -1799,7 +1895,7 @@
 	},
 	{
 		"id": "coretap",
-		"name": "Core tap",
+		"name": "core tap",
 		"desc": "Tap the world's core for endless heat",
 		"require": "g.earthshaker>0&&g.geosculpting>=6",
 		"max": 1,
@@ -2221,6 +2317,21 @@
 		}
 	},
 	{
+		"id": "better_sorting",
+		"name": "Better Organization",
+		"desc": "With better ways to place things to save on space in your cellars.",
+		"require": "g.schematic>=1",
+		"max": 2,
+		"cost": {
+			"research": 5000,
+			"schematic" : 1
+		},
+		"mod": {
+			"cellar.mod.space.max": 5,
+			"better_sorting.cost.schematic": 1
+		}
+	},
+	{
 		"id": "siegeperilous",
 		"name": "siege perilous",
 		"desc": "The fabled seat of destiny",
@@ -2301,6 +2412,26 @@
 		}
 	},
 	{
+		"id": "deepsteelforging",
+		"name": "Core steel forging",
+		"require": "g.titan>0&&(g.coretap>0||g.mythicanvil>0)",
+		"desc": "Relocate your forge to the very core of the world",
+		"cost": {
+			"earthrune": 25,
+			"research": 10000,
+			"tomes": 120,
+			"scrolls": 200,
+			"codices": 400,
+			"sindel": 3,
+			"schematic": 3
+		},
+		"mod": {
+			"smith_work.length": 22,
+			"smith_work.result.gold": 15,
+			"smith_work.result.deepsteel": 0.0052
+		}
+	},
+	{
 		"id": "wizardhall",
 		"name": "wizard's hall",
 		"tags": "t_hall",
@@ -2321,7 +2452,7 @@
 			"tomes": 50,
 			"gold": 15000
 		},
-		"result":{
+		"result": {
 			"evt_hall": true
 		},
 		"mod": {
@@ -2420,7 +2551,7 @@
 		"desc": "Your familiar is a cat, as dark as the night that spawned him.",
 		"require": "g.summonfamiliar>0",
 		"warn": true,
-		"tags":"familiar",
+		"tags": "familiar",
 		"lock": [
 			"familiarowl",
 			"familiarkobold",
@@ -2445,7 +2576,7 @@
 		"desc": "Your familiar is an owl, most active at night, just like you are.",
 		"require": "g.summonfamiliar>0",
 		"warn": true,
-		"tags":"familiar",
+		"tags": "familiar",
 		"lock": [
 			"familiarcat",
 			"familiarkobold",
@@ -2470,7 +2601,7 @@
 		"desc": "Your familiar is a kobold, greedy for gold.",
 		"require": "g.summonfamiliar>0",
 		"warn": true,
-		"tags":"familiar",
+		"tags": "familiar",
 		"lock": [
 			"familiarcat",
 			"familiarowl",
@@ -2494,7 +2625,7 @@
 		"desc": "Your familiar is an imp, devious and prone to mischief.",
 		"require": "g.summonfamiliar>0",
 		"warn": true,
-		"tags":"familiar",
+		"tags": "familiar",
 		"lock": [
 			"familiarcat",
 			"familiarkobold",
@@ -2518,7 +2649,7 @@
 		"desc": "Your familiar is an animated tome, filled with arcane knowledge and a thirst for expansion.",
 		"require": "g.summonfamiliar>0",
 		"warn": true,
-		"tags":"familiar",
+		"tags": "familiar",
 		"lock": [
 			"familiarcat",
 			"familiarkobold",

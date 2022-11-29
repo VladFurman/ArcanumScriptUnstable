@@ -1,11 +1,12 @@
 @echo off
 
-SET ROOTURL=https://mathiashjelm.gitlab.io/arcanum/data/
+SET ROOTURL=https://arcanumtesting.gitlab.io/arcanum/data/
 echo Downloading data from %ROOTURL%
 
 for %%x in (
         armors.json
         classes.json
+        defeatstat.json
         dungeons.json
         enchants.json
         encounters.json

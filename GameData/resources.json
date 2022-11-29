@@ -328,7 +328,7 @@
 	},
 	{
 		"id": "shadowgem",
-		"tags": "magicgems,prismaticgems",
+		"tags": "magicgems,prismaticgems,esotericgems",
 		"group": "gems",
 		"name": "shadow gem",
 		"desc": "Gem imbued with the essence of darkness.",
@@ -336,7 +336,7 @@
 	},
 	{
 		"id": "lightgem",
-		"tags": "magicgems,prismaticgems",
+		"tags": "magicgems,prismaticgems,esotericgems",
 		"group": "gems",
 		"name": "light gem",
 		"desc": "Gem imbued with the essence of light.",
@@ -344,7 +344,7 @@
 	},
 	{
 		"id": "spiritgem",
-		"tags": "magicgems,prismaticgems",
+		"tags": "magicgems,prismaticgems,esotericgems",
 		"group": "gems",
 		"name": "spirit gem",
 		"desc": "Gem imbued with raw spirit.",
@@ -416,6 +416,21 @@
 		}
 	},
 	{
+		"id": "deepsteel",
+		"name": "core steel",
+		"group": "crafting material",
+		"desc": "Steel forged in the very core of the world.",
+		"flavor": "Forged in the hottest of fires, under the immense pressure, not even the most extraordinary smith could produce metal of such quality",
+		"max": 25
+	},
+	{
+		"id": "fineparts",
+		"name": "fine-tuned parts",
+		"group": "crafting material",
+		"desc": "Made to extremely exacting specifications, can be used in production of wondrous machines.",
+		"max": 5
+	},
+	{
 		"id": "dreams",
 		"desc": "We are such stuff as dreams are made of. And our little life is rounded with a sleep.",
 		"max": 3,
@@ -438,6 +453,14 @@
 		"desc": "Basic essence for creating advanced potions.",
 		"flavor": "Smells faintly of milk.",
 		"max": 3
+	},
+	{
+		"id": "potioncombatflask",
+		"name": "combat flask",
+		"group": "reagent",
+		"desc": "Specialized glassware allowing for simultaneously safe storage and easy combat use.",
+		"flavor": "Developed after a string of corrosive potion incidents.",
+		"max": 8
 	},
 	{
 		"id": "space",
