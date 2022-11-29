@@ -6,89 +6,94 @@ let builder = require('./databuilder.js');
 let valData = require('./validateData.js');
 
 function getTimeStamp() {
-    let date = new Date();
+  let date = new Date();
     return '[' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ']';
 }
 
 let settings = {
-    rawdata: {},
-    data: {
+  rawdata: {},
+  data: {
         objects: {}
-    },
-    firstPassState: {},
-    secondPassState: {},
-    dataPath: undefined,
-    results: {
-        dump: [],
-        dumpUniq: {},
-        all: [],
-        errors: [],
-        warnings: [],
-        stats: {},
+  },
+  firstPassState: {},
+  secondPassState: {},
+  dataPath: undefined,
+  logTime: true,
+  results: {
+    dump: [],
+    dumpUniq: {},
+    all: [],
+    errors: [],
+    warnings: [],
+    stats: {},
         addStat: function(key) {
             if(this.stats[key] === undefined) {
-                this.stats[key] = 0;
-            }
+        this.stats[key] = 0;
+      }
 
-            this.stats[key]++;
+      this.stats[key]++;
         }
-    },
+  },
 
-    getFormattedLog(msg, subType) {
+  getFormattedLog(msg, subType) {
         if(msg === undefined){
             msg = '';
-        }
+    }
 
-        let formatted = getTimeStamp();
-        if(subType !== undefined) {
-            formatted = formatted + ' ' + subType;
-        }
+    let formatted = this.logTime ? getTimeStamp() : "";
+    if (subType !== undefined) {
+      formatted = formatted + " " + subType;
+    }
 
         if(this.contextId !== undefined) {
             return formatted + ' ' + this.contextId + '.' + msg;
-        }
+    }
 
         return formatted + ' ' + msg;
-    },
+  },
 
     log: function(msg, logToConsole = true) {
-        let finalMsg = this.getFormattedLog(msg);
-        this.results.all.push(finalMsg);
+    let finalMsg = this.getFormattedLog(msg);
+    this.results.all.push(finalMsg);
 
         if(logToConsole === true) {
-            console.log(finalMsg);
-        }
-    },
-    logError: function (msg) {
-        this.log(msg, false);
+      console.log(finalMsg);
+    }
+  },
+  logError: function (msg) {
+    this.log(msg, false);
 
         let finalMsg = this.getFormattedLog(msg, 'ERROR');
-        this.results.errors.push(finalMsg);
-        console.error(finalMsg);
-    },
+    this.results.errors.push(finalMsg);
+    console.error(finalMsg);
+  },
     logWarning: function(msg) {
-        this.log(msg, false);
+    this.log(msg, false);
 
         let finalMsg = this.getFormattedLog(msg, 'WARNING');
-        this.results.warnings.push(finalMsg);
-        console.warn(finalMsg);
+    this.results.warnings.push(finalMsg);
+    console.warn(finalMsg);
     }
 };
 
 function processArguments() {
-    let args = process.argv;
+  let args = process.argv;
     if(args.length <= 2) {
         settings.logError("Missing Arguments")
-        return false;
-    }
+    return false;
+  }
 
-    settings.dataPath = args[2];
-    if (!fs.existsSync(settings.dataPath)) {
-        settings.logError("Data Path does not exist: " + settings.dataPath);
-        return false;
-    }
+  settings.dataPath = args[2];
+  if (!fs.existsSync(settings.dataPath)) {
+    settings.logError("Data Path does not exist: " + settings.dataPath);
+    return false;
+  }
 
-    return true;
+  if (args.length >= 4 && args[3] == "notime") {
+    settings.logTime = false;
+  }
+
+  return true;
 }
 
 function validateFirstPassMany(data, key, type) {
