@@ -573,6 +573,7 @@ exports.validateSecondPass = function(settings, object, key) {
         case 'effect':
         case 'resist':
         case 'alter':
+        case 'sell':
         case 'mod': {
             validateModificationBlock(settings, object, key);
             break;
@@ -900,7 +901,7 @@ exports.validateFirstPass = function(settings, sourceData, targetData, property)
         case 'alter':
         case 'result':
         case 'run':
-        // case 'sell':
+        case 'sell':
         // case 'craftable':
         case 'cost': {
             let statBlock = validateStat.validateBlock(settings, propertyData);
