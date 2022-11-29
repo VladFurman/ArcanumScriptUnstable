@@ -787,7 +787,7 @@ exports.validateFirstPass = function(settings, sourceData, targetData, property)
         case 'unused':
         case 'silent':
         case 'secret':
-        case 'craftable':
+        case 'craftable': //TODO: #6 check this is correct
         case 'repeat': {
             switch(typeof propertyData) {
                 case 'string': {
